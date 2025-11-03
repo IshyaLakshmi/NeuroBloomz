@@ -1,0 +1,488 @@
+.lovelace-font { font-family: 'Crimson Text', serif; }
+        .tt-drugs-font { font-family: 'Inter', sans-serif; }
+    /* Calmer warm-brown page background (slightly lighter overall) */
+    body { background: linear-gradient(135deg, #f7e9d6 0%, #f0d9b3 35%, #e0c39a 70%, #d1aa78 100%); min-height: 100vh; }
+        :root { --page-h-padding: 2rem; }
+.page { display: none; }
+.page.active { display: block; }
+#home { display: block; }
+.nav-link { position: relative; cursor: pointer; transition: all 0.3s ease; color: #8b5a2b; z-index: 2000; }
+.nav-link:hover { transform: translateY(-1px); background: rgba(212, 193, 156, 0.2); }
+.nav-link.active { background: linear-gradient(135deg, #d4c19c, #c4a484); color: #6b4423; font-weight: 600; }
+.nav-link.active::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #c4a484, #b8956f); border-radius: 2px; }
+.bounce-gentle { animation: bounceGentle 8s ease-in-out infinite; }
+        @keyframes bounceGentle { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-3px); } }
+        .card-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 25px 50px -12px rgba(139, 90, 43, 0.25), 0 0 30px rgba(255, 182, 193, 0.2); }
+    .filter-btn { cursor: pointer; transition: all 0.3s ease; background: #f4e8d0; color: #8b5a2b; border: 2px solid #d4c19c; z-index: 1500; position: relative; }
+    .filter-btn.active { background: linear-gradient(135deg, #d4c19c, #c4a484); color: #6b4423; box-shadow: 0 8px 25px rgba(212, 193, 156, 0.4); border-color: #b8956f; }
+        .resource-card { transition: all 0.4s ease; border: 2px solid transparent; background: rgba(244, 232, 208, 0.95); backdrop-filter: blur(10px); }
+        .resource-card:hover { border-color: #d4c19c; }
+        .resource-card.hidden { display: none; }
+    .floating-element { animation: float 8s ease-in-out infinite; pointer-events: none; z-index: 1; }
+        @keyframes float { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-6px) rotate(0.5deg); } }
+    .sparkle { animation: sparkle 3s ease-in-out infinite; pointer-events: none; z-index: 1; }
+        @keyframes sparkle { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
+    .wiggle { animation: wiggle 4s ease-in-out infinite; pointer-events: none; z-index: 1; }
+        @keyframes wiggle { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(5deg); } 75% { transform: rotate(-5deg); } }
+    .pulse-soft { animation: pulse-soft 6s ease-in-out infinite; pointer-events: none; z-index: 1; }
+        .gradient-text { background: linear-gradient(135deg, #8b5a2b, #6b4423, #5a3419); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .glass-effect { background: rgba(244, 232, 208, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(212, 193, 156, 0.3); }
+        .skill-badge { font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.75rem; }
+    .btn-primary { background: linear-gradient(135deg, #d4c19c, #c4a484); transition: all 0.3s ease; color: #6b4423; position: relative; z-index: 1500; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(212, 193, 156, 0.4); }
+        .hero-text { color: #6b4423; }
+        .section-text { color: #8b5a2b; }
+    .cta-btn { z-index: 1800; position: relative; }
+    .download-btn { z-index: 1600; position: relative; }
+    button { z-index: 1500; position: relative; }
+    @media (max-width: 768px) { .mobile-text { font-size: 2.5rem; } }
+
+    /* Compact navbar helpers: keep header small and text-only brand styling
+       (logo image handling removed). */
+    .site-nav {
+        min-height: 48px; /* small, unobtrusive header */
+        box-sizing: border-box;
+          /* Ensure top inset isn't overridden by shorthand: set block-start (top) and block-end (bottom) explicitly.
+              Use 1.5mm top so the brand text sits a little lower, and keep a small bottom inset for balance. */
+          padding-block: 1.5mm 0.25rem; /* top bottom (reduced by half) */
+        padding-inline: var(--page-h-padding);
+        overflow: visible;
+        display: block;
+    }
+
+    .site-nav .nav-inner {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    /* Header brand (logo + text) - local image insertion
+       Drop your logo image at `assets/logo.png`. If the image fails to load
+       the <img> will be hidden via onerror to keep the header tidy. */
+    .header-brand { display: flex; align-items: center; gap: 0.6rem; }
+    .header-brand { margin-top: 0.5mm; }
+    .header-brand-link { display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; color: inherit; }
+    /* Logo ties to the text size so it always matches the NeuroBloomz letters.
+         Use height:1em so the image scales to the computed font-size of the
+         brand text. Keep the header/nav sizing stable by avoiding larger
+         font-size rules that would increase the nav height. */
+     /* Visually scale the logo larger without affecting layout height.
+         transform:scale will not change document flow, so the navbar stays
+         compact. Adjust --brand-logo-scale to tweak the size. */
+    /* Controls for logo visual scaling and small offsets (easy to tweak) */
+    :root { --brand-logo-scale: 3.3; --brand-logo-offset-x: -3px; --brand-text-offset-x: 8px; --brand-text-scale: 2.2; }
+    .header-logo { height: 1em; max-height: none; width: auto; display: inline-block; vertical-align: middle; object-fit: contain; transform: scale(var(--brand-logo-scale)) translateX(var(--brand-logo-offset-x)); transform-origin: left center; will-change: transform; overflow: visible; }
+    /* Nudge the brand text slightly right so it doesn't overlap the enlarged logo */
+    .site-brand-text { font-weight: 800; color: #7b4f22; line-height: 1; font-size: 1rem; display: inline-block; vertical-align: middle; transform-origin: left center; transform: translateX(var(--brand-text-offset-x)) scale(var(--brand-text-scale)); will-change: transform; }
+
+     /* Note: we intentionally avoid increasing the brand font-size on wider
+         screens so the navbar retains its compact height. If you'd like the
+         letters to appear larger without changing layout, we can use a
+         transform-based visual scale instead (which doesn't affect flow). */
+
+
+
+footer {
+    background: #111;
+    color: white;
+    padding: 40px 20px;
+}
+
+/* Apply consistent horizontal padding to main containers */
+.container, .max-w-7xl, .max-w-4xl, .max-w-3xl { padding-left: var(--page-h-padding); padding-right: var(--page-h-padding); }
+
+footer h3, footer h4 {
+    color: #6c63ff;
+}
+
+footer a {
+    color: #ccc;
+    text-decoration: none;
+    transition: 0.3s;
+}
+footer a:hover {
+    color: #fff;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    border-top: 1px solid #444;
+    padding-top: 15px;
+    font-size: 14px;
+}
+
+
+.footer-form iframe {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    padding: 10px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+    align-items: start;
+}
+
+/* logo-related rules removed */
+#language-development .tt-drugs-font { font-family: 'Inter', sans-serif; }
+/* Balanced two-column proportions (apply on medium+ screens) */
+@media (min-width: 768px) {
+    #language-development .max-w-7xl.grid { grid-template-columns: 1fr 1.05fr; }
+}
+/* Card hover and focus for subtle elevation */
+#language-development .glass-effect, #language-development .glass-effect * { transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+#language-development .glass-effect:hover, #language-development .glass-effect:focus-within { transform: translateY(-6px); box-shadow: 0 30px 60px rgba(16,24,40,0.12); }
+/* Icon sizing and alignment */
+#language-development .floating-element i, #language-development .text-5xl i { font-size: 1.35em; opacity: .95; }
+/* Tighter paragraph measures for easier reading */
+#language-development p, #language-development li { line-height: 1.6; font-size: 1rem; }
+/* Milestone cards: consistent height and balanced rhythm */
+#language-development .grid [class*="bg-white"] { min-height: 9.5rem; display: flex; flex-direction: column; justify-content: center; }
+/* Soft divider rule for sections */
+#language-development .section-rule { height: 1px; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(200,180,200,0.25), rgba(255,255,255,0)); margin: 1.25rem 0; }
+
+/* Prevent excessive hover lift for specific panels (keeps layout stable) */
+#brain-inlang-accordion.glass-effect:hover,
+#brain-inlang-accordion.glass-effect:focus-within {
+    transform: none !important;
+    box-shadow: 0 12px 30px rgba(16,24,40,0.06) !important;
+}
+
+/* Center the Brain Mechanisms accordion and allow JS to set its pixel width while keeping it centered */
+#brain-inlang-accordion { margin-left: auto; margin-right: auto; }
+
+/* Use single-column paragraph flow for the Brain Mechanisms text (user requested full paragraph flow) */
+#brain-inlang-panel .research-text { column-count: 1; column-width: auto; column-gap: 0.5rem; text-align: left; }
+/* Avoid breaking paragraphs across columns for readability */
+#brain-inlang-panel .research-text p { break-inside: avoid; -webkit-column-break-inside: avoid; margin: 0 0 1rem 0; }
+/* Force visual centering even if parent grid/padding shifts layout */
+.center-force { position: relative; left: 50%; transform: translateX(-50%); margin-left: 0; margin-right: 0; }
+/* Add gentle inner padding so text doesn't hug the edges */
+#brain-inlang-panel { padding: .5rem; }
+
+/* Remove heavy shadow on specific large wrappers to avoid dark band above footer */
+.no-shadow { box-shadow: none; }
+
+/* Footer custom styling to replace inline styles */
+.footer-custom { background: #f6e4bd; color: #000; padding: 3rem 1.5rem; }
+/* Design tokens: pastel-blue palette */
+:root {
+    --pastel-blue-start: #9fd8ff;
+    --pastel-blue-end: #8bd4e6;
+    --pastel-blue-contrast: #044a57;
+    --teal-700: #0f766e;
+}
+
+/* Button palette tokens (primary + secondary) */
+:root {
+    --btn-primary-start: #60a5fa; /* sky-400 */
+    --btn-primary-end: #3b82f6;   /* blue-500 */
+    --btn-secondary-start: #7dd3fc; /* light-sky */
+    --btn-secondary-end: #67e8f9;   /* cyan-ish */
+    --btn-text-contrast: #ffffff;
+}
+
+/* Button base styles using the palette tokens */
+.cta-btn, .download-btn, .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.9rem;
+    border-radius: 0.6rem;
+    color: var(--btn-text-contrast);
+    background: linear-gradient(90deg, var(--btn-primary-start), var(--btn-primary-end));
+    border: none;
+    box-shadow: 0 8px 20px rgba(59,130,246,0.12);
+    transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+    text-decoration: none;
+}
+.cta-btn:hover, .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 38px rgba(59,130,246,0.18); }
+.download-btn { background: linear-gradient(90deg, var(--btn-secondary-start), var(--btn-secondary-end)); color: var(--btn-text-contrast); }
+.download-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(34,197,94,0.12); }
+.cta-btn .fa, .download-btn .fa, .cta-btn i, .download-btn i { color: inherit; }
+
+/* Keep Types page buttons using the pastel-blue tokens so the page retains its scoped palette */
+.types-section .cta-btn, .types-section .download-btn, .types-section .btn-primary {
+    background: linear-gradient(90deg, var(--pastel-blue-start), var(--pastel-blue-end));
+    color: var(--pastel-blue-contrast);
+    box-shadow: 0 8px 20px rgba(8,120,120,0.06);
+}
+
+.footer-custom .footer-inner { max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.25rem; }
+@media (min-width: 768px) { .footer-custom .footer-inner { flex-direction: row; justify-content: space-between; align-items: flex-start; } }
+.footer-custom .footer-nav { margin-left: auto; display: flex; gap: 2rem; flex-wrap: wrap; }
+
+/* Make language development sections balanced */
+.language-dev-section { margin-bottom: 0; }
+.language-dev-section .glass-effect { padding: 0.6rem; }
+
+/* Attention spans visual styles */
+.attention-spans .span-row { display: flex; align-items: center; gap: 0.75rem; }
+.attention-spans .span-label { width: 5.5rem; font-weight: 600; color: var(--teal-700, #0f766e); }
+.attention-spans .span-bar { --bg: linear-gradient(90deg, var(--pastel-blue-start, #9fd8ff), var(--pastel-blue-end, #8bd4e6)); background: var(--bg); color: var(--pastel-blue-contrast, #044a57); padding: 0.45rem 0.75rem; border-radius: 999px; box-shadow: 0 6px 18px rgba(8,120,120,0.08); width: calc(var(--span) * 24rem); max-width: 100%; min-width: 3.5rem; text-align: center; font-size: 0.9rem; }
+.attention-spans { background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(230,255,253,0.9)); }
+
+@media (max-width: 640px) {
+    .attention-spans .span-bar { width: auto; display: inline-block; }
+    .attention-spans .span-label { width: 4.5rem; font-size: 0.85rem; }
+}
+
+/* Improve attention tips card */
+.improve-attention { background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(242,253,250,0.95)); border-left: 4px solid rgba(6,182,212,0.18); }
+.improve-attention h3 { color: #075985; }
+.improve-attention ul li { background: rgba(6,182,212,0.04); padding: 0.6rem 0.9rem; border-radius: 8px; }
+.improve-attention ul li strong { color: #0f766e; }
+
+/* Quote styling for Types of Attention page */
+.attention-quote { font-size: 1.15rem; border-left: 4px solid rgba(6,182,212,0.18); padding-left: 1rem; color: #0f766e; }
+.attention-quote .blockquote-cite { display: block; margin-top: 0.5rem; font-weight: 600; color: #075985; }
+
+/* Slightly larger pull-quote for Types of Attention when moved above the card */
+.attention-pull-quote blockquote { font-size: 1.5rem; }
+.attention-pull-quote { margin-bottom: 0.75rem; }
+
+/* Tip grid for improve-attention section */
+.tip-grid { margin-top: 0.5rem; }
+.tip-card { display:flex; gap:0.75rem; align-items:flex-start; padding:0.85rem; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(240,255,253,0.98)); box-shadow: 0 8px 20px rgba(6,182,212,0.06); }
+.tip-icon { width:44px; height:44px; flex-shrink:0; border-radius:10px; display:flex; align-items:center; justify-content:center; color:white; font-size:1.05rem; background: linear-gradient(90deg,#34d399,#06b6d4); box-shadow: 0 6px 16px rgba(6,182,212,0.08); }
+.tip-title { font-size:1rem; margin-bottom:0.15rem; }
+.tip-card p { margin:0; }
+
+@media (max-width:640px) {
+    .tip-card { padding:0.7rem; }
+    .tip-icon { width:40px; height:40px; }
+}
+
+/* Compact card layout for the five types of attention */
+.attention-card { background: rgba(255,255,255,0.92); box-shadow: 0 8px 24px rgba(3, 105, 118, 0.06); transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease; padding: 1rem 1.15rem; }
+.attention-card:hover { transform: translateY(-6px); box-shadow: 0 18px 36px rgba(3,105,118,0.09); }
+.attention-card-icon { width: 44px; height: 44px; border-radius: 10px; display:flex; align-items:center; justify-content:center; color: white; font-size: 1rem; box-shadow: 0 6px 18px rgba(3,105,118,0.06); flex-shrink:0; }
+.attention-card-icon i { transform: translateY(1px); }
+.attention-badge { display:inline-block; background: rgba(6,182,212,0.06); color: #065f46; padding: 2px 8px; border-radius: 999px; font-size: 0.8rem; margin-left: 0.5rem; }
+/* Types-specific refinements applied to the same .attention-card (kept here to consolidate) */
+.attention-card h3 { font-size: 1.05rem; }
+.attention-card p { color: #475569; }
+.attention-card .attention-badge { background: rgba(15,119,110,0.06); color: #065f46; }
+
+/* Icon gradients: support existing utility-like classes and explicit icon-* classes */
+
+@media (max-width: 768px) {
+    .attention-card { padding: 0.9rem; }
+    .attention-card-icon { width:40px; height:40px; }
+}
+
+/* Types of Attention section polish */
+.types-section { background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(245,255,253,0.96)); padding: 2.5rem; }
+.types-section h2 { letter-spacing: -0.6px; }
+.tip-card { transition: transform 200ms ease, box-shadow 200ms ease; }
+.tip-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(6,182,212,0.08); }
+.attention-spans .span-bar { width: auto; max-width: 18rem; }
+.attention-spans { padding: 1rem; }
+
+/* Types page: use pastel-blue accents */
+.types-section h2 { color: var(--pastel-blue-contrast); }
+.types-section .attention-card-icon { background: linear-gradient(90deg, var(--pastel-blue-start), var(--pastel-blue-end)); box-shadow: 0 6px 18px rgba(8,120,120,0.06); }
+.types-section .attention-badge { background: rgba(139,212,230,0.12); color: var(--pastel-blue-contrast); }
+
+/* Make pastel-blue the forming color for the Types page palette */
+.types-section {
+    /* subtle pastel-blue wash behind the section */
+    background: linear-gradient(180deg, rgba(159,216,255,0.06), rgba(139,212,230,0.03));
+}
+.types-section .attention-card { border-left-color: var(--pastel-blue-start) !important; }
+.types-section h3 { color: var(--pastel-blue-contrast) !important; }
+.types-section p, .types-section .tt-drugs-font { color: rgba(4,74,87,0.9); }
+.types-section .attention-card:hover { box-shadow: 0 18px 36px rgba(8,120,160,0.08); transform: translateY(-6px); }
+.types-section .attention-pull-quote { border-left-color: var(--pastel-blue-start); }
+.types-section .attention-card .attention-badge { background: rgba(159,216,255,0.08); color: var(--pastel-blue-contrast); }
+
+@media (min-width: 1024px) {
+    .types-section { padding: 3rem 3.5rem; }
+    .attention-card h3 { font-size: 1.1rem; }
+}
+
+/* Back-to-top floating button */
+.back-to-top {
+    position: fixed;
+    right: 1rem;
+    bottom: 1.25rem;
+    z-index: 9999;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.85rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg,#6b8cff,#7b5cff);
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 12px 40px rgba(59,130,246,0.18);
+    cursor: pointer;
+    transform: translateY(12px);
+    opacity: 0;
+    transition: opacity 240ms ease, transform 240ms ease, box-shadow 160ms ease;
+}
+.back-to-top.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.back-to-top:focus { outline: none; box-shadow: 0 12px 40px rgba(59,130,246,0.28); }
+
+/* Blog card layout */
+.blog-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.blog-card { display: flex; gap: 1rem; align-items: center; border-radius: 14px; padding: 0.6rem 0.8rem; }
+.blog-thumb { width: 160px; height: 110px; flex-shrink: 0; border-radius: 10px; background: linear-gradient(135deg,#efe8de,#f7efe0); display: block; object-fit: cover; overflow: hidden; border: 1px solid rgba(0,0,0,0.04); }
+.blog-meta { display: flex; flex-direction: column; gap: 0.25rem; }
+.blog-author-row { display: flex; align-items: center; gap: 0.6rem; }
+.profile-pic { width: 48px; height: 48px; border-radius: 999px; object-fit: cover; /* crop to focus face */ object-position: center 40%; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.6); box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+.blog-author-name { color: #7b5a3a; font-weight: 700; }
+
+/* Make the entire card clickable via an anchor wrapper */
+.blog-link { display: block; text-decoration: none; color: inherit; }
+
+/* Compact featured blog card */
+.blog-feature { max-width: 760px; align-items: center; }
+.blog-thumb { width: 140px; height: 100px; border-radius: 10px; flex-shrink: 0; }
+.blog-meta { padding-right: 0.5rem; }
+.read-more-btn { display: inline-block; padding: 0.35rem 0.6rem; border-radius: 999px; font-weight: 700; font-size: 0.86rem; 
+    background: linear-gradient(90deg, #fff7ed, #fff1f2); /* soft pastel peach → pink */
+    color: #6b4423; /* warm brown text */
+    border: 1px solid rgba(107,68,35,0.06);
+    box-shadow: none;
+    transition: background 180ms ease, transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+    text-decoration: none;
+}
+.read-more-btn:hover, .read-more-btn:focus {
+    transform: translateY(-2px);
+    background: linear-gradient(90deg, #fff3db, #ffe9ef);
+    box-shadow: 0 8px 20px rgba(16,24,40,0.06);
+    outline: none;
+}
+
+/* Full article post card (centered tan card, doesn't span full width) */
+.post-card { background: linear-gradient(180deg, rgba(244,232,208,0.95), rgba(236,214,167,0.9)); border-radius: 14px; box-shadow: 0 14px 40px rgba(16,24,40,0.06); border: 1px solid rgba(212,193,156,0.25); }
+.post-meta { color: #7b5a3a; }
+.post-body p { margin-bottom: 1rem; }
+
+/* Post page header and hero image */
+.post-header { display: block; }
+.post-title { font-size: 2.1rem; margin: 1.25rem 1.5rem 0.5rem; color: #5b3e24; font-weight: 800; }
+.post-hero { width: 100%; max-height: 360px; overflow: hidden; display: block; }
+.post-hero img { width: 100%; height: 100%; object-fit: cover; display: block; max-height: 360px; width: 100%; /* crop toward faces: adjust object-position to show lower portion */ object-position: center 60%; }
+
+.post-meta-row { display: flex; flex-direction: column; align-items: center; gap: 0.45rem; padding: 0.6rem 1.5rem 1rem; text-align: center; }
+.post-date { color: #8b6b4a; font-size: 0.95rem; }
+.post-author { display: flex; align-items: center; gap: 0.6rem; }
+.post-author-name { color: #7b5a3a; font-weight: 700; }
+
+/* Center the article content and keep line-length comfortable */
+.post-body { padding-top: 0; }
+.post-content { max-width: 740px; margin: 0 auto; padding-bottom: 1rem; color: #5b4633; font-size: 1rem; line-height: 1.7; }
+
+/* Slightly larger profile pic on article page */
+.post-header .profile-pic { width: 56px; height: 56px; border-radius: 999px; object-fit: cover; object-position: center 40%; border: 2px solid rgba(255,255,255,0.6); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+
+@media (max-width: 640px) {
+    .post-title { font-size: 1.6rem; margin: 1rem; }
+    .post-meta-row { flex-direction: column; align-items: flex-start; gap: 0.5rem; padding-left: 1rem; padding-right: 1rem; }
+    .post-hero img { max-height: 260px; }
+}
+
+.blog-grid { display: grid; grid-template-columns: 1fr; justify-items: center; gap: 1rem; }
+.blog-link { max-width: 760px; display: block; }
+.blog-title { font-weight: 800; color: #6b4423; font-size: 1.25rem; }
+.blog-date { color: #8b6b4a; font-size: 0.85rem; }
+.blog-author { color: #7b5a3a; font-size: 0.9rem; font-weight: 600; }
+.blog-excerpt { color: #5b4633; font-size: 0.98rem; line-height: 1.45; }
+/* Show only the first line of the excerpt (single-line preview) */
+.blog-excerpt {
+    display: -webkit-box;
+    line-clamp: 1; /* standard property for compatibility */
+    -webkit-line-clamp: 1; /* limit to one line (WebKit) */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Use the thumbnail as a background image (cover/center) with a gentle overlay
+   so it feels similar to the home page background treatment */
+.blog-thumb {
+    background-size: cover;
+    /* bias the crop toward faces (move focal point slightly upward/downward as needed) */
+    background-position: center 45%;
+    position: relative;
+}
+.blog-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(255,255,255,0.02));
+}
+@media (min-width: 768px) { .blog-grid { grid-template-columns: 1fr; } .blog-thumb { width: 220px; height: 130px; } }
+/* Temporary highlight applied when clicking an index item */
+.highlight-temp { box-shadow: 0 20px 50px rgba(99,102,241,0.12); transform: translateY(-8px); transition: box-shadow 220ms ease, transform 220ms ease; }
+
+/* Calmer / minimal blog styles (scoped to blog and full-post pages) */
+#blog .rounded-3xl, #blog .blog-grid, #blog .blog-card, #blog .blog-feature, .page#post-after-diagnosis, .page#post-worry {
+    background: transparent;
+}
+
+/* Make the blog container match the site's warm palette while staying calm.
+   Use a gentle tan similar to the footer token, and make inner cards even lighter. */
+#blog > .max-w-7xl, #blog .rounded-3xl {
+    background: #f6e4bd; /* footer-like soft tan */
+    border: 1px solid rgba(16,24,40,0.04);
+    box-shadow: none;
+    padding: 1.25rem;
+}
+
+#blog .blog-grid { gap: 1.75rem; grid-template-columns: 1fr; justify-items: center; }
+
+#blog .blog-card, #blog .blog-feature, .page#post-after-diagnosis .post-card, .page#post-worry .post-card {
+    background: #fff8f0; /* even lighter inner card for low contrast */
+    border: 1px solid rgba(16,24,40,0.04);
+    box-shadow: none; /* remove heavy shadows */
+    padding: 1rem;
+    border-radius: 12px;
+}
+
+#blog .blog-meta { padding: 0.6rem 0.8rem; }
+
+#blog .blog-title, #blog .blog-author-name { color: #33323a; }
+#blog .blog-excerpt, #blog .blog-date, #blog .blog-author { color: #4a4a4a; }
+
+#blog .blog-excerpt { line-height: 1.8; font-size: 1rem; }
+
+.post-content, .page#post-after-diagnosis .post-content, .page#post-worry .post-content {
+    max-width: 680px;
+    margin: 0 auto;
+    color: #2f2f2f; /* softer dark gray */
+    line-height: 1.85; /* generous line-height for readability */
+    font-size: 1.03rem;
+}
+
+.post-card { border-radius: 12px; }
+
+/* Subdue thumbnail overlay and ensure cover behavior */
+.blog-thumb { background-size: cover; background-position: center 45%; }
+.blog-thumb::after { background: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(255,255,255,0.01)); }
+
+/* Reduce animated decorations inside blog/post pages */
+#blog .floating-element, #blog .sparkle, #blog .wiggle, #blog .pulse-soft, .page#post-after-diagnosis .floating-element, .page#post-worry .floating-element {
+    display: none !important;
+}
+
+/* Make Read more unobtrusive and aligned */
+.read-more-btn { font-weight: 600; padding: 0.35rem 0.6rem; }
+
+/* Slightly increase spacing around blog cards */
+.blog-card { margin: 0.25rem 0; }
