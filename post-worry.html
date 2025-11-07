@@ -20,20 +20,25 @@
     <nav class="site-nav shadow-xl border-b-2 border-amber-200 sticky top-0 z-50 glass-effect" style="background: linear-gradient(135deg, #f0d9b3 0%, #e0c39a 50%, #d1aa78 100%);">
         <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 w-full nav-inner">
             <div class="header-brand">
-                <a href="index" aria-label="NeuroBloomz home" class="header-brand-link">
+                <a href="index.html" aria-label="NeuroBloomz home" class="header-brand-link">
                     <img src="logo w out bg.png" alt="NeuroBloomz logo" class="header-logo" width="48" height="48" onerror="this.style.display='none';" />
                     <span class="lovelace-font site-brand-text">NeuroBloomz</span>
                 </a>
             </div>
             <div class="hidden md:block nav-links">
-                <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold tt-drugs-font" href="index">Home</a>
-                <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold tt-drugs-font" href="blog">Blog</a>
+                <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold tt-drugs-font" href="index.html">Home</a>
+                <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold tt-drugs-font" href="about-website.html">About Website</a>
+                <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold tt-drugs-font" href="about-me.html">About Me</a>
+                <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold tt-drugs-font" href="neurodivergency.html">Neurodivergency</a>
+                <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold tt-drugs-font" href="blog.html">Blog</a>
+                <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold tt-drugs-font" href="resources.html">Resources</a>
+                <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold tt-drugs-font" href="contact.html">Contact</a>
             </div>
         </div>
     </nav>
 
     <div class="max-w-4xl mx-auto px-6 py-10">
-        <a href="blog" class="btn-primary inline-block mb-6">← Back to blog</a>
+    <a href="blog.html" class="btn-primary back-link inline-block mb-6" style="margin-top:4cm;">← Back to blog</a>
 
         <article class="post-card glass-effect rounded-2xl overflow-hidden">
             <header class="post-header">
@@ -72,8 +77,55 @@
                 </div>
             </div>
         </article>
+
+        <!-- Small centered back button at end of post -->
+        <div class="text-center mt-8">
+            <a href="blog.html" class="btn-primary small-back">← Back to blog</a>
+        </div>
     </div>
-    <footer class="w-full footer-custom tt-drugs-font"></footer>
+    <!-- Static footer (copied from contact page for consistency) -->
+    <footer class="footer-custom tt-drugs-font" style="background:transparent; padding:2.25rem 1rem 3rem;">
+        <div class="footer-inner max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 flex flex-col md:flex-row justify-between gap-6">
+            <div class="max-w-xs text-base">
+                <h2 class="lovelace-font text-2xl mb-2"><i class="fas fa-seedling text-pink-300"></i> NeuroBloomz</h2>
+                <p class="tt-drugs-font text-amber-900">Supporting child development with engaging activities, resources, and guidance for parents and educators.</p>
+                <div style="margin-top:0.75rem;">
+                    <button id="footerDyslexicToggle" class="dys-toggle" aria-pressed="false" title="Dyslexic Font Accessibility" aria-label="Toggle Dyslexic Font Accessibility">Dyslexic Font Accessibility</button>
+                </div>
+            </div>
+
+            <div class="footer-nav flex flex-wrap gap-12 text-base font-semibold tt-drugs-font">
+                <div>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-black hover:text-black transition">Home</a></li>
+                        <li><a href="about-website.html" class="text-black hover:text-black transition">About Website</a></li>
+                        <li><a href="about-me.html" class="text-black hover:text-black transition">About Me</a></li>
+                        <li><a href="contact.html" class="text-black hover:text-black transition">Contact Me</a></li>
+                        <li><a href="blog.html" class="text-black hover:text-black transition">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="neurodivergency.html" class="text-black hover:text-black transition font-semibold">Neurodivergency Page</a>
+                            <ul class="pl-4 mt-2 space-y-1 text-amber-300 font-normal">
+                                <li><a href="autism.html" class="text-black hover:text-black transition">Autism</a></li>
+                                <li><a href="adhd.html" class="text-black hover:text-black transition">ADHD</a></li>
+                                <li><a href="specific-learning-disorders.html" class="text-black hover:text-black transition">Specific Learning Disorders</a></li>
+                                <li><a href="language-development.html" class="text-black hover:text-black transition">Language Development</a></li>
+                                <li><a href="types-of-attention.html" class="text-black hover:text-black transition">Types of Attention</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="resources.html" class="text-black hover:text-black transition font-semibold">Resources Page</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-credit" style="font-size:0.68rem; color:rgba(0,0,0,0.65); text-align:center; margin-top:0.75rem;">
+            <div>Icons made from <a href="https://www.onlinewebfonts.com/icon" target="_blank" rel="noopener noreferrer">svg icons</a> licensed under CC BY 4.0</div>
+        </div>
+    </footer>
     <script src="assets/footer-standard.js?v=20251107"></script>
 </body>
 </html>

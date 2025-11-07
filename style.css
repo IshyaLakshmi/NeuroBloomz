@@ -429,6 +429,41 @@ footer a:hover {
 }
 .back-to-top:focus { outline: none; box-shadow: 0 12px 40px rgba(59,130,246,0.28); }
 
+/* Ensure 'back' buttons (e.g. "← Back to blog") never overlap the sticky header.
+   Apply the `back-link` class to any top-level back anchors so they remain
+   visible and sit just below the header when scrolling. Uses --site-nav-height
+   which is set by the header-offset script; falls back to 56px. */
+.btn-primary.back-link {
+    /* Keep back-links in normal flow at the top of the content (not sticky).
+       This prevents them from moving when the page scrolls. Use a small
+       visual offset to give breathing room under the header if needed. */
+    position: relative;
+    top: 0;
+    margin-top: 0.25rem;
+    z-index: 1;
+    display: inline-block;
+}
+
+/* Page header offset helper
+   Use this on page-level header containers to ensure they sit below the
+   fixed/sticky header. It adds the current header height (set into
+   --site-nav-height by the site JS) plus an extra 3cm as requested. The
+   JS in `assets/footer-standard.js` keeps --site-nav-height up-to-date. */
+.page-header-offset {
+    /* Use a reasonable default header height (56px) so the offset is
+       visible immediately even if the JS that measures the header hasn't
+       run yet. The JS will update --site-nav-height later and this will
+       still apply. */
+    margin-top: calc(var(--site-nav-height, 56px) + 3cm) !important;
+}
+
+/* Smaller back button variant used at the end of posts */
+.btn-primary.small-back {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.95rem;
+    border-radius: 0.6rem;
+}
+
 /* Blog card layout */
 .blog-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
 .blog-card { display: flex; gap: 1rem; align-items: center; border-radius: 14px; padding: 0.6rem 0.8rem; }
