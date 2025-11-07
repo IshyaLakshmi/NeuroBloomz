@@ -4,15 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeuroBloomz - Child Development Resources Hub</title>
-    <!-- Favicons: explicit asset files (browser chooses best match). Replace files in assets/ if needed. -->
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-512.png">
-    <link rel="shortcut icon" href="assets/favicon.ico">
-    <!-- Fallback to the logo file if explicit favicons aren't present -->
-    <link rel="icon" href="assets/logo.png" sizes="any">
+    <!-- Immediate inline SVG favicon (shows right away and bypasses caching) - scaled to 2.5× base for stronger tab visibility -->
+    <link rel="icon" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%238b5a2b'/%3E%3Ctext x='50%25' y='54%25' font-size='800' font-family='Arial,Helvetica,sans-serif' font-weight='900' fill='%23ffffff' text-anchor='middle' dominant-baseline='middle'%3ENB%3C/text%3E%3C/svg%3E">
+    <!-- SVG asset (browsers that support SVG favicons will use this) -->
+    <link rel="icon" href="assets/favicon.svg?v=20251107" sizes="any">
+    <!-- Standard favicon files (replace these with generated PNG/ICO files in assets/) -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico?v=20251107">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png?v=20251107">
+    <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64x64.png?v=20251107">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png?v=20251107">
+
+    <!-- Apple / PWA -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon-180x180.png?v=20251107">
+    <link rel="manifest" href="assets/site.webmanifest?v=20251107">
+
+    <!-- Safari pinned tab -->
+    <link rel="mask-icon" href="assets/safari-pinned-tab.svg?v=20251107" color="#8b5a2b">
+
+    <!-- Theme / tile colors -->
+    <meta name="msapplication-TileColor" content="#8b5a2b">
+    <meta name="theme-color" content="#8b5a2b">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -60,24 +71,19 @@
     /* Compact navbar helpers: keep header small and text-only brand styling
            (logo image handling removed). */
         .site-nav {
-            min-height: 48px; /* small, unobtrusive header */
+            min-height: 44px; /* slightly smaller header */
             box-sizing: border-box;
-            /* Ensure top inset moves the brand down: set block-start (top) explicitly. */
-            padding-block: 4mm 0.25rem; /* top bottom (reduced by half) */
+            /* Reduce vertical padding so the divider sits closer to the links */
+            padding-block: 0.35rem 0.12rem; /* top bottom */
         }
 
     /* Layout helpers for the navbar */
     .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-    .header-brand { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5mm; }
+    .header-brand { display: flex; align-items: center; gap: 0.5rem; margin-top: 0; }
     .header-brand-link { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; }
 
-        /* Reduce the scale so the logo visually appears larger without increasing flow height.
-           Adjust these variables if you want the logo slightly bigger/smaller. */
-    :root { --brand-logo-scale: 3.3; --brand-logo-offset-x: -3px; --brand-text-offset-x: 8px; --brand-text-scale: 2.2; }
-          .header-logo { height: 1em; max-height: none; width: auto; display: inline-block; vertical-align: middle; object-fit: contain; transform: scale(var(--brand-logo-scale)) translateX(var(--brand-logo-offset-x)); transform-origin: left center; will-change: transform; overflow: visible; }
-          /* Nudge the brand text slightly right so it doesn't overlap the enlarged logo
-              and visually scale the text without affecting layout flow. */
-          .site-brand-text { font-weight: 800; color: #7b4f22; line-height: 1; font-size: 1rem; display: inline-block; vertical-align: middle; transform-origin: left center; transform: translateX(var(--brand-text-offset-x)) scale(var(--brand-text-scale)); will-change: transform; }
+        /* Header/logo styles are centralized in style.css. Removed duplicate rules here so
+           the external stylesheet can control logo scale & position consistently. */
 
      /* Note: we intentionally avoid increasing the brand font-size on wider
          screens so the navbar retains its compact height. If you'd like the
@@ -463,22 +469,22 @@ footer .dys-toggle { margin-top:0.4rem; }
 <nav class="site-nav shadow-xl border-b-2 border-amber-200 sticky top-0 z-50 glass-effect" style="background: linear-gradient(135deg, #f0d9b3 0%, #e0c39a 50%, #d1aa78 100%);">
     <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 w-full nav-inner">
         <div class="header-brand">
-            <a href="#" onclick="showPage('home')" aria-label="NeuroBloomz home" class="header-brand-link">
+            <a href="index.html" aria-label="NeuroBloomz home" class="header-brand-link">
                 <!-- Local logo file: place your image at assets/logo.png -->
-                <img src="logo w out bg.png" alt="NeuroBloomz logo" class="header-logo" onerror="this.style.display='none';" />
-                <span class="lovelace-font site-brand-text">      NeuroBloomz</span>
+                <img src="logo w out bg.png" alt="NeuroBloomz logo" class="header-logo" width="48" height="48" onerror="this.style.display='none';" />
+                <span class="lovelace-font site-brand-text" style="font-size:clamp(1.8rem,4vw,3rem);line-height:1;font-weight:800;display:inline-block;color:#8b5a2b;">NeuroBloomz</span>
             </a>
         </div>
 
-        <!-- Desktop links -->
+        <!-- Desktop links (now normal links to separate pages) -->
         <div class="hidden md:block nav-links">
-            <button class="nav-link active px-4 py-1 rounded-lg text-sm font-semibold transition-all tt-drugs-font" onclick="showPage('home')" id="nav-home">Home</button>
-            <button class="nav-link px-4 py-2 rounded-lg text-sm font-semibold transition-all tt-drugs-font" onclick="showPage('about-website')" id="nav-about-website">About Website</button>
-            <button class="nav-link px-4 py-2 rounded-lg text-sm font-semibold transition-all tt-drugs-font" onclick="showPage('about-me')" id="nav-about-me">About Me</button>
-            <button class="nav-link px-4 py-2 rounded-lg text-sm font-semibold transition-all tt-drugs-font" onclick="showPage('neurodivergency')" id="nav-neurodivergency">Neurodivergency</button>
-            <button class="nav-link px-4 py-2 rounded-lg text-sm font-semibold transition-all tt-drugs-font" onclick="showPage('blog')" id="nav-blog">Blog</button>
-            <button class="nav-link px-4 py-2 rounded-lg text-sm font-semibold transition-all tt-drugs-font" onclick="showPage('resources')" id="nav-resources">Resources</button>
-           <button class="nav-link px-4 py-2 rounded-lg text-sm font-semibold transition-all tt-drugs-font" onclick="showPage('contact')" id="nav-contact">Contact</button>
+            <a class="nav-link active px-4 py-1 rounded-lg text-sm font-semibold transition-all tt-drugs-font" href="index.html" id="nav-home">Home</a>
+            <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold transition-all tt-drugs-font" href="about-website.html" id="nav-about-website">About Website</a>
+            <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold transition-all tt-drugs-font" href="about-me.html" id="nav-about-me">About Me</a>
+            <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold transition-all tt-drugs-font" href="neurodivergency.html" id="nav-neurodivergency">Neurodivergency</a>
+            <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold transition-all tt-drugs-font" href="blog.html" id="nav-blog">Blog</a>
+            <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold transition-all tt-drugs-font" href="resources.html" id="nav-resources">Resources</a>
+           <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold transition-all tt-drugs-font" href="contact.html" id="nav-contact">Contact</a>
         </div>
 
         <!-- Mobile menu button -->
@@ -493,13 +499,13 @@ footer .dys-toggle { margin-top:0.4rem; }
 
         <div id="mobileMenu" class="md:hidden hidden">
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 glass-effect border-t border-amber-200">
-            <button class="mobile-nav-link text-amber-900 hover:text-amber-800 hover:bg-amber-100 block px-4 py-3 rounded-lg text-base font-semibold tt-drugs-font w-full text-left transition-colors" onclick="showPage('home')">Home</button>
-            <button class="mobile-nav-link text-amber-900 hover:text-amber-800 hover:bg-amber-100 block px-4 py-3 rounded-lg text-base font-semibold tt-drugs-font w-full text-left transition-colors" onclick="showPage('about-website')">About Website</button>
-            <button class="mobile-nav-link text-amber-900 hover:text-amber-800 hover:bg-amber-100 block px-4 py-3 rounded-lg text-base font-semibold tt-drugs-font w-full text-left transition-colors" onclick="showPage('about-me')">About Me</button>
-            <button class="mobile-nav-link text-amber-900 hover:text-amber-800 hover:bg-amber-100 block px-4 py-3 rounded-lg text-base font-semibold tt-drugs-font w-full text-left transition-colors" onclick="showPage('neurodivergency')">Neurodivergency</button>
-            <button class="mobile-nav-link text-amber-900 hover:text-amber-800 hover:bg-amber-100 block px-4 py-3 rounded-lg text-base font-semibold tt-drugs-font w-full text-left transition-colors" onclick="showPage('blog')">Blog</button>
-            <button class="mobile-nav-link text-amber-900 hover:text-amber-800 hover:bg-amber-100 block px-4 py-3 rounded-lg text-base font-semibold tt-drugs-font w-full text-left transition-colors" onclick="showPage('resources')">Resources</button>
-            <button class="mobile-nav-link text-amber-900 hover:text-amber-800 hover:bg-amber-100 block px-4 py-3 rounded-lg text-base font-semibold tt-drugs-font w-full text-left transition-colors" onclick="showPage('contact')">Contact</button>
+            <a class="mobile-nav-link text-amber-900 hover:text-amber-800 hover:bg-amber-100 block px-4 py-3 rounded-lg text-base font-semibold tt-drugs-font w-full text-left transition-colors" href="index.html">Home</a>
+            <a class="mobile-nav-link text-amber-900 hover:text-amber-800 hover:bg-amber-100 block px-4 py-3 rounded-lg text-base font-semibold tt-drugs-font w-full text-left transition-colors" href="about-website.html">About Website</a>
+            <a class="mobile-nav-link text-amber-900 hover:text-amber-800 hover:bg-amber-100 block px-4 py-3 rounded-lg text-base font-semibold tt-drugs-font w-full text-left transition-colors" href="about-me.html">About Me</a>
+            <a class="mobile-nav-link text-amber-900 hover:text-amber-800 hover:bg-amber-100 block px-4 py-3 rounded-lg text-base font-semibold tt-drugs-font w-full text-left transition-colors" href="neurodivergency.html">Neurodivergency</a>
+            <a class="mobile-nav-link text-amber-900 hover:text-amber-800 hover:bg-amber-100 block px-4 py-3 rounded-lg text-base font-semibold tt-drugs-font w-full text-left transition-colors" href="blog.html">Blog</a>
+            <a class="mobile-nav-link text-amber-900 hover:text-amber-800 hover:bg-amber-100 block px-4 py-3 rounded-lg text-base font-semibold tt-drugs-font w-full text-left transition-colors" href="resources.html">Resources</a>
+            <a class="mobile-nav-link text-amber-900 hover:text-amber-800 hover:bg-amber-100 block px-4 py-3 rounded-lg text-base font-semibold tt-drugs-font w-full text-left transition-colors" href="contact.html">Contact</a>
         </div>
     </div>
 </nav>
@@ -547,16 +553,16 @@ footer .dys-toggle { margin-top:0.4rem; }
                 
                 <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-6 relative z-50">
                     <!-- Softer pastel gradient for accessibility and palette harmony -->
-                    <button aria-label="Explore Resources" class="cta-btn bg-gradient-to-r from-amber-100 via-pink-100 to-yellow-100 hover:from-amber-200 hover:via-pink-200 hover:to-yellow-200 text-amber-900 px-10 py-4 rounded-full text-lg tt-drugs-font font-semibold shadow-md border border-white/40 transition-transform duration-300 hover:scale-105 cursor-pointer" onclick="showPage('resources')">
+                    <a aria-label="Explore Resources" href="resources.html" class="cta-btn bg-gradient-to-r from-amber-100 via-pink-100 to-yellow-100 hover:from-amber-200 hover:via-pink-200 hover:to-yellow-200 text-amber-900 px-10 py-4 rounded-full text-lg tt-drugs-font font-semibold shadow-md border border-white/40 transition-transform duration-300 hover:scale-105 inline-flex items-center justify-center">
                         <i class="fa fa-book mr-2"></i> Explore Resources
-                    </button>
+                    </a>
                     <!-- Matching soft style but slightly warmer variant to pair with the first CTA -->
-                    <button aria-label="Learn About Neurodivergency" class="cta-btn bg-gradient-to-r from-pink-100 via-amber-100 to-purple-100 hover:from-pink-200 hover:via-amber-200 hover:to-purple-200 text-amber-900 px-10 py-4 rounded-full text-lg tt-drugs-font font-semibold shadow-md border border-white/40 transition-transform duration-300 hover:scale-105 cursor-pointer" onclick="showPage('neurodivergency')">
+                    <a aria-label="Learn About Neurodivergency" href="neurodivergency.html" class="cta-btn bg-gradient-to-r from-pink-100 via-amber-100 to-purple-100 hover:from-pink-200 hover:via-amber-200 hover:to-purple-200 text-amber-900 px-10 py-4 rounded-full text-lg tt-drugs-font font-semibold shadow-md border border-white/40 transition-transform duration-300 hover:scale-105 inline-flex items-center justify-center">
                         <i class="fa fa-brain mr-2"></i> Learn About Neurodivergency
-                    </button>
-                    <button aria-label="Read our Blog" class="cta-btn bg-gradient-to-r from-pink-100 via-amber-100 to-purple-100 hover:from-pink-200 hover:via-amber-200 hover:to-purple-200 text-amber-900 px-10 py-4 rounded-full text-lg tt-drugs-font font-semibold shadow-md border border-white/40 transition-transform duration-300 hover:scale-105 cursor-pointer" onclick="showPage('blog')">
+                    </a>
+                    <a aria-label="Read our Blog" href="blog.html" class="cta-btn bg-gradient-to-r from-pink-100 via-amber-100 to-purple-100 hover:from-pink-200 hover:via-amber-200 hover:to-purple-200 text-amber-900 px-10 py-4 rounded-full text-lg tt-drugs-font font-semibold shadow-md border border-white/40 transition-transform duration-300 hover:scale-105 inline-flex items-center justify-center">
                         <i class="fa-solid fa-blog mr-2"></i> Blog
-                    </button>
+                    </a>
         </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
@@ -638,7 +644,7 @@ footer .dys-toggle { margin-top:0.4rem; }
                         Educational activities and worksheets designed to support child development across various skill areas
                     </p>
                     
-                    <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <div class="sub-nav-container flex flex-wrap justify-center gap-4 mb-12">
                         <button class="filter-btn active btn-primary text-white px-6 py-4 rounded-full text-sm tt-drugs-font font-semibold hover:scale-105 transition-all duration-300" data-filter="all" onclick="filterResources('all')">
                             <span class="sparkle"><i class="fas fa-star text-yellow-300"></i></span> All Resources
                         </button>
@@ -1660,9 +1666,9 @@ footer .dys-toggle { margin-top:0.4rem; }
                         <p class="tt-drugs-font text-amber-700 text-lg mb-6 leading-relaxed">
                             I'd love to hear your thoughts, suggestions, or answer any questions you might have about NeuroBloomz!
                         </p>
-                        <button onclick="showPage('contact')" class="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-8 py-4 rounded-xl tt-drugs-font font-bold text-lg transition-all duration-300 shadow-lg hover:scale-105">
+                        <a href="contact.html" class="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-8 py-4 rounded-xl tt-drugs-font font-bold text-lg transition-all duration-300 shadow-lg hover:scale-105 inline-flex items-center justify-center">
                             <i class="fas fa-envelope"></i> Contact Me
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1756,9 +1762,9 @@ footer .dys-toggle { margin-top:0.4rem; }
                         <p class="tt-drugs-font text-amber-700 text-lg mb-6 leading-relaxed">
                             I'd love to hear from you! Whether you have questions about my project, suggestions for improvement, or just want to share your thoughts about NeuroBloomz.
                         </p>
-                        <button onclick="showPage('contact')" class="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-8 py-4 rounded-xl tt-drugs-font font-bold text-lg transition-all duration-300 shadow-lg hover:scale-105">
+                        <a href="contact.html" class="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-8 py-4 rounded-xl tt-drugs-font font-bold text-lg transition-all duration-300 shadow-lg hover:scale-105 inline-flex items-center justify-center">
                             <i class="fas fa-envelope"></i> Get in Touch
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1857,7 +1863,7 @@ footer .dys-toggle { margin-top:0.4rem; }
                     <div>
                         <h2 class="lovelace-font text-purple-800 text-3xl mb-8 text-center"><i class="fas fa-puzzle-piece text-amber-400"></i> Neurodevelopmental Conditions</h2>
                         <div class="grid md:grid-cols-3 gap-8">
-                            <div class="glass-effect rounded-3xl shadow-xl border-2 border-white/50 card-hover cursor-pointer topic-card" onclick="showPage('autism')">
+                            <a href="autism.html" class="glass-effect rounded-3xl shadow-xl border-2 border-white/50 card-hover cursor-pointer topic-card">
                                 <div class="p-8 text-center">
                                     <span class="text-6xl mb-6 block"><i class="fas fa-puzzle-piece text-amber-400"></i></span>
                                     <h3 class="lovelace-font text-blue-800 text-2xl mb-4">Autism Spectrum Disorder</h3>
@@ -1866,9 +1872,9 @@ footer .dys-toggle { margin-top:0.4rem; }
                                         <p class="tt-drugs-font text-blue-800 font-semibold text-sm">Click to Learn More →</p>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
 
-                            <div class="glass-effect rounded-3xl shadow-xl border-2 border-white/50 card-hover cursor-pointer topic-card" onclick="showPage('adhd')">
+                            <a href="adhd.html" class="glass-effect rounded-3xl shadow-xl border-2 border-white/50 card-hover cursor-pointer topic-card">
                                 <div class="p-8 text-center">
                                     <span class="text-6xl mb-6 block"><i class="fas fa-bolt text-yellow-300"></i></span>
                                     <h3 class="lovelace-font text-orange-800 text-2xl mb-4">ADHD</h3>
@@ -1877,9 +1883,9 @@ footer .dys-toggle { margin-top:0.4rem; }
                                         <p class="tt-drugs-font text-orange-800 font-semibold text-sm">Click to Learn More →</p>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
 
-                            <div class="glass-effect rounded-3xl shadow-xl border-2 border-white/50 card-hover cursor-pointer topic-card" onclick="showPage('specific-learning-disorders')">
+                            <a href="specific-learning-disorders.html" class="glass-effect rounded-3xl shadow-xl border-2 border-white/50 card-hover cursor-pointer topic-card">
                                 <div class="p-8 text-center">
                                     <span class="text-6xl mb-6 block"><i class="fas fa-book text-green-300"></i></span>
                                     <h3 class="lovelace-font text-green-800 text-2xl mb-4">Specific Learning Disorders</h3>
@@ -1888,14 +1894,14 @@ footer .dys-toggle { margin-top:0.4rem; }
                                         <p class="tt-drugs-font text-green-800 font-semibold text-sm">Click to Learn More →</p>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
 
                     <div>
                         <h2 class="lovelace-font text-purple-800 text-3xl mb-8 text-center"><i class="fas fa-comments text-purple-400"></i> Language & Attention Development</h2>
                         <div class="grid md:grid-cols-2 gap-8">
-                            <div class="glass-effect rounded-3xl shadow-xl border-2 border-white/50 card-hover cursor-pointer topic-card" onclick="showPage('language-development')">
+                            <a href="language-development.html" class="glass-effect rounded-3xl shadow-xl border-2 border-white/50 card-hover cursor-pointer topic-card">
                                 <div class="p-8 text-center">
                                     <span class="text-6xl mb-6 block"><i class="fas fa-comments text-pink-300"></i></span>
                                     <h3 class="lovelace-font text-pink-800 text-2xl mb-4">Language Development</h3>
@@ -1904,9 +1910,9 @@ footer .dys-toggle { margin-top:0.4rem; }
                                         <p class="tt-drugs-font text-pink-800 font-semibold text-sm">Click to Learn More →</p>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
 
-                            <div class="glass-effect rounded-3xl shadow-xl border-2 border-white/50 card-hover cursor-pointer topic-card" onclick="showPage('types-of-attention')">
+                            <a href="types-of-attention.html" class="glass-effect rounded-3xl shadow-xl border-2 border-white/50 card-hover cursor-pointer topic-card">
                                 <div class="p-8 text-center">
                                     <span class="text-6xl mb-6 block"><i class="fas fa-bullseye text-teal-300"></i></span>
                                     <h3 class="lovelace-font text-teal-800 text-2xl mb-4">Types of Attention</h3>
@@ -1915,7 +1921,7 @@ footer .dys-toggle { margin-top:0.4rem; }
                                         <p class="tt-drugs-font text-teal-800 font-semibold text-sm">Click to Learn More →</p>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1941,9 +1947,9 @@ footer .dys-toggle { margin-top:0.4rem; }
                         <p class="tt-drugs-font text-amber-700 text-lg mb-6 leading-relaxed">
                            If you have any questions, details, ideas, or just want to talk, feel free to contact me.
                         </p>
-                        <button onclick="showPage('contact')" class="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-8 py-4 rounded-xl tt-drugs-font font-bold text-lg transition-all duration-300 shadow-lg hover:scale-105">
+                        <a href="contact.html" class="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-8 py-4 rounded-xl tt-drugs-font font-bold text-lg transition-all duration-300 shadow-lg hover:scale-105 inline-flex items-center justify-center">
                             <i class="fas fa-envelope"></i> Get in Touch
-                        </button>
+                        </a>
                     </div>
                 </div>
           </div>
@@ -1956,9 +1962,9 @@ footer .dys-toggle { margin-top:0.4rem; }
         <div class="min-h-screen py-20" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%);">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-20">
-                    <button onclick="showPage('neurodivergency')" class="mb-6 bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-2 rounded-lg tt-drugs-font font-semibold transition-colors">
+                    <a href="neurodivergency.html" class="mb-6 bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-2 rounded-lg tt-drugs-font font-semibold transition-colors inline-flex items-center">
                         <i class="fas fa-arrow-left"></i> Back to Neurodivergency
-                    </button>
+                    </a>
                     <h1 class="lovelace-font gradient-text mb-6 mobile-text" style="font-size: 4rem; line-height: 1.1;">
                         <i class="fas fa-puzzle-piece"></i> Understanding Autism
                     </h1>
@@ -2076,9 +2082,9 @@ footer .dys-toggle { margin-top:0.4rem; }
         <div class="min-h-screen py-20" style="background: linear-gradient(135deg, #fed7aa 0%, #f3dec8 50%, #f5c69f 100%);">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-20">
-                    <button onclick="showPage('neurodivergency')" class="mb-6 bg-orange-100 hover:bg-orange-200 text-orange-800 px-4 py-2 rounded-lg tt-drugs-font font-semibold transition-colors">
+                    <a href="neurodivergency.html" class="mb-6 bg-orange-100 hover:bg-orange-200 text-orange-800 px-4 py-2 rounded-lg tt-drugs-font font-semibold transition-colors inline-flex items-center">
                         <i class="fas fa-arrow-left"></i> Back to Neurodivergency
-                    </button>
+                    </a>
                     <h1 class="lovelace-font gradient-text mb-6 mobile-text" style="font-size: 4rem; line-height: 1.1;">
                         <i class="fas fa-bolt text-yellow-300"></i> Understanding ADHD
                     </h1>
@@ -2217,9 +2223,9 @@ footer .dys-toggle { margin-top:0.4rem; }
         <div class="min-h-screen py-20" style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 50%, #86efac 100%);">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-20">
-                    <button onclick="showPage('neurodivergency')" class="mb-6 bg-green-100 hover:bg-green-200 text-green-800 px-4 py-2 rounded-lg tt-drugs-font font-semibold transition-colors">
+                    <a href="neurodivergency.html" class="mb-6 bg-green-100 hover:bg-green-200 text-green-800 px-4 py-2 rounded-lg tt-drugs-font font-semibold transition-colors inline-flex items-center">
                         <i class="fas fa-arrow-left"></i> Back to Neurodivergency
-                    </button>
+                    </a>
                     <h1 class="lovelace-font gradient-text mb-6 mobile-text" style="font-size: 4rem; line-height: 1.1;">
                         <i class="fas fa-book text-green-300"></i> Specific Learning Disorders 
                     </h1>
@@ -2374,80 +2380,19 @@ footer .dys-toggle { margin-top:0.4rem; }
             </div>
         </div>
     </div>
+ <!-- Blog section moved to separate page: see blog.html -->
+    <!-- Posts are now individual files (e.g. post-after-diagnosis.html, post-worry.html) -->
 
     <!-- Language Development Page -->
-
-    <!-- Blog Page -->
-    <div id="blog" class="page" style="display:none;">
-        <div class="min-h-screen py-16" style="background: linear-gradient(135deg, #f0fbff 0%, #e6f7ff 100%);">
-            <div class="max-w-7xl mx-auto px-4">
-                <div class="text-center mb-14">
-                    <button onclick="showPage('home')" class="mb-6 bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-2 rounded-lg tt-drugs-font font-semibold transition-colors">
-                        ← Back to Home
-                    </button>
-                    <h1 class="lovelace-font text-blue-800 mb-6 mobile-text" style="font-size: 3rem; line-height: 1.1;">
-                        Blog
-                    </h1>
-                    <p class="tt-drugs-font text-blue-700 text-lg max-w-3xl mx-auto">Welcome to our blog! Here's where we'll share monthly or bimonthly articles with insights on neurodiversity, parenting, and personal growth.</p>
-                </div>
-                <div class="rounded-3xl p-4">
-                    <div class="blog-grid">
-                        <!-- Blog post: Worry (latest) -->
-                        <a class="blog-link" data-date="2025-10-19" href="#post-worry" onclick="showPage('post-worry'); window.location.hash='post-worry'; return false;" aria-label="Open Worry article">
-                            <article class="blog-card post-card">
-                        <div class="blog-thumb" style="background-image: url('https://images.pexels.com/photos/7699410/pexels-photo-7699410.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); background-position: center 50%;"></div>
-                                <div class="blog-meta">
-                                    <div class="blog-date">October 19, 2025</div>
-                                    <div class="blog-author-row">
-                                        <img class="profile-pic" loading="lazy" src="MyPhoto.jpg.JPG" alt="Ishya Dinesh" width="48" height="48">
-                                        <div>
-                                            <div class="blog-author-name">Ishya Dinesh</div>
-                                            <div class="blog-author">Professional Student</div>
-                                        </div>
-                                    </div>
-                                    <div class="blog-title">Worry</div>
-                                    <div class="blog-excerpt">Every great thing that anyone has ever done has always been a struggle. It’s going to get worse before it gets better.</div>
-                                    <div class="mt-2"><span class="read-more-btn">Read more</span></div>
-                                </div>
-                            </article>
-                        </a>
-
-                        <!-- Blog post: After Diagnosis (older) -->
-                        <a class="blog-link" data-date="2025-09-12" href="#post-after-diagnosis" onclick="showPage('post-after-diagnosis'); window.location.hash='post-after-diagnosis'; return false;" aria-label="Open After Diagnosis article">
-                            <article class="blog-card blog-feature post-card">
-                                <div class="blog-thumb" style="background-image: url('https://images.pexels.com/photos/8954823/pexels-photo-8954823.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); background-position: center 45%;"></div>
-                                <div class="blog-meta">
-                                    <div class="blog-date">September 12, 2025</div>
-                                    <div class="blog-author-row">
-                                        <img class="profile-pic" loading="lazy" src="MyPhoto.jpg.JPG" alt="Ishya Dinesh" width="48" height="48">
-                                        <div>
-                                            <div class="blog-author-name">Ishya Dinesh</div>
-                                            <div class="blog-author">Professional Student</div>
-                                        </div>
-                                    </div>
-                                    <div class="blog-title">After Diagnosis</div>
-                                    <div class="blog-excerpt">Assuming that things went well with the pediatrician, psychiatrist, child psychologist, and the many professionals needed to diagnose your child with whatever flavor of neurodivergency they have, you are probably scrambling to figure out how to help your child, how to supplement and support and do all the things that the parenting books tell you to do.</div>
-                                    <div class="mt-2"><span class="read-more-btn">Read more</span></div>
-                                </div>
-                            </article>
-                        </a>
-                    </div>
-                    <!-- Inline full-article removed; posts now link to separate article pages -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <div id="language-development" class="page">
         <div class="min-h-screen py-16" style="background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 50%, #f9a8d4 100%);">
             <div class="max-w-7xl mx-auto px-4">
              
                 <!-- Header -->
                 <div class="text-center mb-14">
-                    <button onclick="showPage('neurodivergency')" class="mb-6 bg-pink-100 hover:bg-pink-200 text-pink-800 px-4 py-2 rounded-lg tt-drugs-font font-semibold transition-colors">
+                    <a href="neurodivergency.html" class="mb-6 bg-pink-100 hover:bg-pink-200 text-pink-800 px-4 py-2 rounded-lg tt-drugs-font font-semibold transition-colors inline-flex items-center">
                         ← Back to Neurodivergency
-                    </button>
+                    </a>
                     <h1 class="lovelace-font gradient-text mb-6 mobile-text" style="font-size: 3.5rem; line-height: 1.1;">
                         <i class="fas fa-comments text-pink-300"></i> Language Development
                     </h1>
@@ -2626,9 +2571,9 @@ footer .dys-toggle { margin-top:0.4rem; }
         <div class="min-h-screen py-20" style="background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 50%, #81e6d9 100%);">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-20">
-                    <button onclick="showPage('neurodivergency')" class="mb-6 bg-teal-100 hover:bg-teal-200 text-teal-800 px-4 py-2 rounded-lg tt-drugs-font font-semibold transition-colors">
+                    <a href="neurodivergency.html" class="mb-6 bg-teal-100 hover:bg-teal-200 text-teal-800 px-4 py-2 rounded-lg tt-drugs-font font-semibold transition-colors inline-flex items-center">
                         ← Back to Neurodivergency
-                    </button>
+                    </a>
                     <h1 class="lovelace-font gradient-text mb-6 mobile-text" style="font-size: 4rem; line-height: 1.1;">
                         <i class="fas fa-bullseye text-teal-300"></i> Types of Attention
                     </h1>
@@ -3058,7 +3003,7 @@ footer .dys-toggle { margin-top:0.4rem; }
     <!-- Full article page embedded so the site is contained in a single HTML file -->
     <div id="post-after-diagnosis" class="page" style="display:none;">
         <div class="max-w-4xl mx-auto px-6 py-10">
-            <button onclick="showPage('blog'); window.location.hash='blog';" class="btn-primary inline-block mb-6">← Back to blog</button>
+            <a href="blog.html" class="btn-primary inline-block mb-6">← Back to blog</a>
 
             <article class="post-card glass-effect rounded-2xl overflow-hidden">
                 <!-- Post header: hero image centered, then title + meta centered below -->
@@ -3105,50 +3050,7 @@ footer .dys-toggle { margin-top:0.4rem; }
         </div>
     </div>
 
-    <!-- New full article: Worry -->
-    <div id="post-worry" class="page" style="display:none;">
-        <div class="max-w-4xl mx-auto px-6 py-10">
-            <button onclick="showPage('blog'); window.location.hash='blog';" class="btn-primary inline-block mb-6">← Back to blog</button>
-
-            <article class="post-card glass-effect rounded-2xl overflow-hidden">
-                <header class="post-header">
-                    <div class="post-hero" style="display:flex; justify-content:center; padding:1.25rem;">
-                        <img src="https://images.pexels.com/photos/7699410/pexels-photo-7699410.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Person covering face with hands" />
-                    </div>
-
-                    <h1 class="lovelace-font post-title" style="text-align:center; margin-top:0.5rem;">Worry</h1>
-
-                    <div class="post-meta-row">
-                        <time class="post-date" datetime="2025-10-19">October 19, 2025</time>
-                        <div class="post-author">
-                            <img src="MyPhoto.jpg.JPG" alt="Ishya Dinesh" class="profile-pic" />
-                            <span class="post-author-name">Ishya Dinesh, Professional Student</span>
-                        </div>
-                    </div>
-                </header>
-
-                <div class="post-body tt-drugs-font text-amber-800 leading-relaxed p-8">
-                    <div class="post-content">
-                        <p>Every great thing that anyone has ever done has always been a struggle. It’s going to get worse before it gets better.</p>
-
-                        <p>You are going to think that you are doing everything wrong while simultaneously getting so much feedback from all your peers about how they are succeeding or what they did wrong or right and it’s going to feel like the most overwhelming thing in the entire world.</p>
-
-                        <p>You’re going to panic and fret and worry over each and every small instance that you’ve interacted with your child.</p>
-
-                        <p>Well, I’ve got really good news for you.</p>
-
-                        <p>Just like we tell teenagers it's normal to feel hormonal, this is the most normal thing too. Every parent and guardian is going to worry, that’s just how love is expressed. And if you don’t worry, then how do you grow? The diagnosis and the feedback and the growth, they are all just parts of one beautiful, whole, wonderful being, and that’s your child.</p>
-
-                        <p>So, at the end of the day, all those parts of your child that may not be “normal”? Normal is overrated. Normal is waking up to the monotony of life without appreciating all the exquisite things that we have access to and have accomplished. So, instead of being normal, let’s try to be better than normal. Let’s try to focus on the wondrous abilities that your child does have and the perspective they gain from being a little different (something that every child is).</p>
-
-                        <p>The worry is normal. Just learn when to listen to it and when to tune it out. Just like when you are listening to music and doing a task. And ten years from now, you probably won’t even remember what you were worrying about. So, take a breath and look around at how lucky we all are to be alive right now. And then, go back to dwelling on whatever topic that’s certainly messing with your mind. But this time, approach it a little differently or with a little less emotions. Hopefully, that’ll clear it up.</p>
-
-                        <p><strong>Just an Extra Tip:</strong> I’m not going to give you cookie cutter advice like every other article online. From personal experience, when I get worried about something, I list it out. Then I list out any potential stressors in my life. After all of that, I distract myself with something, whether that’s a good book, washing dishes in the kitchen, painting, sewing, something that’s hands on and needs all of my attention. After all of that, I come back to the problem with a fresh mind and soul. If it’s a solvable issue, usually it works out after that. If not, well, then you are better off devoting mental attention to some other topic. And I know that it is easy for me to tell you that, but the tips I share throughout this blog is from my personal experience.</p>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </div>
+    <!-- Worry post moved to separate file: post-worry.html -->
 
 <footer class="w-full footer-custom tt-drugs-font">
     <div class="footer-inner">
@@ -3169,11 +3071,11 @@ footer .dys-toggle { margin-top:0.4rem; }
             <!-- Column 1 -->
             <div>
                 <ul class="space-y-2">
-                    <li><a href="javascript:void(0)" onclick="showPage('home')" class="text-black hover:text-black transition">Home</a></li>
-                    <li><a href="javascript:void(0)" onclick="showPage('about-website')" class="text-black hover:text-black transition">About Website</a></li>
-                    <li><a href="javascript:void(0)" onclick="showPage('about-me')" class="text-black hover:text-black transition">About Me</a></li>
-                    <li><a href="javascript:void(0)" onclick="showPage('contact')" class="text-black hover:text-black transition">Contact Me</a></li>
-                    <li><a href="javascript:void(0)" onclick="showPage('blog')" class="text-black hover:text-black transition">Blog</a></li>
+                    <li><a href="index.html" class="text-black hover:text-black transition">Home</a></li>
+                    <li><a href="about-website.html" class="text-black hover:text-black transition">About Website</a></li>
+                    <li><a href="about-me.html" class="text-black hover:text-black transition">About Me</a></li>
+                    <li><a href="contact.html" class="text-black hover:text-black transition">Contact Me</a></li>
+                    <li><a href="blog.html" class="text-black hover:text-black transition">Blog</a></li>
                 </ul>
             </div>
 
@@ -3181,16 +3083,16 @@ footer .dys-toggle { margin-top:0.4rem; }
             <div>
                 <ul class="space-y-2">
                     <li>
-                        <a href="javascript:void(0)" onclick="showPage('neurodivergency')" class="text-black hover:text-black transition font-semibold">Neurodivergency Page</a>
+                        <a href="neurodivergency.html" class="text-black hover:text-black transition font-semibold">Neurodivergency Page</a>
                         <ul class="pl-4 mt-2 space-y-1 text-amber-300 font-normal">
-                            <li><a href="javascript:void(0)" onclick="showPage('autism')" class="text-black hover:text-black transition">Autism</a></li>
-                            <li><a href="javascript:void(0)" onclick="showPage('adhd')" class="text-black hover:text-black transition">ADHD</a></li>
-                            <li><a href="javascript:void(0)" onclick="showPage('specific-learning-disorders')" class="text-black hover:text-black transition">Specific Learning Disorders</a></li>
-                            <li><a href="javascript:void(0)" onclick="showPage('language-development')" class="text-black hover:text-black transition">Language Development</a></li>
-                            <li><a href="javascript:void(0)" onclick="showPage('types-of-attention')" class="text-black hover:text-black transition">Types of Attention</a></li>
+                            <li><a href="autism.html" class="text-black hover:text-black transition">Autism</a></li>
+                            <li><a href="adhd.html" class="text-black hover:text-black transition">ADHD</a></li>
+                            <li><a href="specific-learning-disorders.html" class="text-black hover:text-black transition">Specific Learning Disorders</a></li>
+                            <li><a href="language-development.html" class="text-black hover:text-black transition">Language Development</a></li>
+                            <li><a href="types-of-attention.html" class="text-black hover:text-black transition">Types of Attention</a></li>
                         </ul>
                     </li>
-                    <li><a href="javascript:void(0)" onclick="showPage('resources')" class="text-black hover:text-black transition font-semibold">Resources Page</a></li>
+                    <li><a href="resources.html" class="text-black hover:text-black transition font-semibold">Resources Page</a></li>
                 </ul>
             </div>
         </div>
@@ -3237,5 +3139,7 @@ footer .dys-toggle { margin-top:0.4rem; }
         applyState(enabled);
     })();
 </script>
+</script>
+    <script src="assets/footer-standard.js?v=20251107"></script>
 </body>
 </html>

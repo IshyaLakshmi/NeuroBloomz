@@ -1,5 +1,28 @@
 .lovelace-font { font-family: 'Crimson Text', serif; }
         .tt-drugs-font { font-family: 'Inter', sans-serif; }
+/* OpenDyslexic font-face and dyslexic helper styles (site-wide)
+   Moved from inline index.html CSS so the font toggle works on all pages.
+   Please ensure assets/Open-Dyslexic.woff2 or OpenDyslexic-Regular.woff2 exists
+   in the `assets/` folder; a CDN fallback is provided. */
+@font-face {
+    font-family: 'OpenDyslexic';
+    src: url('assets/Open-Dyslexic.woff2') format('woff2'),
+         url('assets/OpenDyslexic-Regular.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/antijingoist/open-dyslexic@master/OpenDyslexic3-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+.dyslexic, .dyslexic body, .dyslexic .tt-drugs-font, .dyslexic .lovelace-font {
+    font-family: 'OpenDyslexic' !important;
+    letter-spacing: 0.02em;
+    word-spacing: 0.06em;
+    line-height: 1.8 !important;
+}
+.dys-toggle { background:#fff; border:1px solid rgba(0,0,0,0.08); padding:0.45rem 0.7rem; border-radius:999px; box-shadow:0 8px 20px rgba(0,0,0,0.08); cursor:pointer; font-weight:700; }
+/* Floating home toggle (only shown on pages that include the floating button) */
+#homeDyslexicToggle { position: fixed; right: 1rem; bottom: 1rem; z-index: 9999; display: none; }
+footer .dys-toggle { margin-top:0.4rem; }
     /* Calmer warm-brown page background (slightly lighter overall) */
     body { background: linear-gradient(135deg, #f7e9d6 0%, #f0d9b3 35%, #e0c39a 70%, #d1aa78 100%); min-height: 100vh; }
         :root { --page-h-padding: 2rem; }
@@ -43,13 +66,61 @@
     .site-nav {
         min-height: 48px; /* small, unobtrusive header */
         box-sizing: border-box;
-          /* Ensure top inset isn't overridden by shorthand: set block-start (top) and block-end (bottom) explicitly.
-              Use 1.5mm top so the brand text sits a little lower, and keep a small bottom inset for balance. */
-          padding-block: 1.5mm 0.25rem; /* top bottom (reduced by half) */
+        /* Use padding instead of relying on tiny mm units so we have consistent spacing
+           from the yellow border. Increase top padding a bit to lift content away. */
+        padding-block: 0.6rem 0.6rem; /* top bottom */
         padding-inline: var(--page-h-padding);
         overflow: visible;
         display: block;
+        /* make sure the header is sticky at the top so JS can measure reliably */
+        position: sticky;
+        top: 0;
+        z-index: 9999; /* keep header above most page content */
     }
+
+/* Stronger fixed mode when a page needs deterministic stacking (prevents
+   other elements from overlapping the header during scroll). This is applied
+   via JavaScript by adding the `site-nav-fixed` class to `.site-nav`.
+   It keeps the header visually constant and the content is offset using
+   padding on <main> (set by the same script) to avoid layout jumps. */
+.site-nav.site-nav-fixed {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100%;
+    /* Use a very high z-index to decisively sit above any page element that
+       may have been given a large z-index elsewhere. This only applies when
+       JS explicitly puts the nav into fixed mode via the `site-nav-fixed`
+       class. */
+    z-index: 2147483000 !important; /* near-int32 max, intentional and safe here */
+}
+
+/* Sub-navigation placement helpers
+   Use .sub-nav-container on the sub-navigation row (e.g. filter buttons, secondary nav).
+   Prefer the default static/relative flow so the sub-nav appears immediately below
+   the header. If a page needs the sub-nav to be positioned absolutely, add the
+   .absolute class and the JS will compute the correct top offset using
+   --site-nav-height. */
+.sub-nav-container {
+    position: relative; /* stay in normal flow under the header */
+    /* Keep sub-nav below the fixed header even if other rules try to push it
+       above. We choose a very high-but-still-smaller-than-header z-index so
+       header remains dominant. */
+    z-index: 2147482999;      /* lower than the header's z-index */
+    margin-top: 0.5rem; /* small breathing room below the yellow divider */
+}
+
+/* When absolute positioning is required (rare), use this helper. The top
+   value should be calculated as the header height; JS already sets
+   --site-nav-height. Use the .absolute modifier only when needed. */
+.sub-nav-container.absolute {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(var(--site-nav-height, 48px) + 4px);
+    z-index: 2147482998; /* still below header */
+}
 
     .site-nav .nav-inner {
         height: 100%;
@@ -63,25 +134,47 @@
        Drop your logo image at `assets/logo.png`. If the image fails to load
        the <img> will be hidden via onerror to keep the header tidy. */
     .header-brand { display: flex; align-items: center; gap: 0.6rem; }
-    .header-brand { margin-top: 0.5mm; }
-    .header-brand-link { display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; color: inherit; }
-    /* Logo ties to the text size so it always matches the NeuroBloomz letters.
-         Use height:1em so the image scales to the computed font-size of the
-         brand text. Keep the header/nav sizing stable by avoiding larger
-         font-size rules that would increase the nav height. */
-     /* Visually scale the logo larger without affecting layout height.
-         transform:scale will not change document flow, so the navbar stays
-         compact. Adjust --brand-logo-scale to tweak the size. */
-    /* Controls for logo visual scaling and small offsets (easy to tweak) */
-    :root { --brand-logo-scale: 3.3; --brand-logo-offset-x: -3px; --brand-text-offset-x: 8px; --brand-text-scale: 2.2; }
-    .header-logo { height: 1em; max-height: none; width: auto; display: inline-block; vertical-align: middle; object-fit: contain; transform: scale(var(--brand-logo-scale)) translateX(var(--brand-logo-offset-x)); transform-origin: left center; will-change: transform; overflow: visible; }
-    /* Nudge the brand text slightly right so it doesn't overlap the enlarged logo */
-    .site-brand-text { font-weight: 800; color: #7b4f22; line-height: 1; font-size: 1rem; display: inline-block; vertical-align: middle; transform-origin: left center; transform: translateX(var(--brand-text-offset-x)) scale(var(--brand-text-scale)); will-change: transform; }
+    /* Keep the brand block vertically centered — remove extra top margin that forced visual shift */
+    .header-brand-link { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: inherit; }
+
+    /* Easier, robust sizing: set explicit logo size and text size so flexbox can center them reliably. */
+     /* Make the site-brand text noticeably larger and keep logo slightly smaller so
+         the visual balance favors the wordmark as requested. Use an explicit
+         override rule below to ensure this applies across pages. */
+     :root { --brand-logo-size: 42px; --brand-text-size: 3rem; --brand-logo-scale: 0.8; --brand-logo-offset-x: -5px; }
+    .header-logo {
+        width: var(--brand-logo-size);
+        height: var(--brand-logo-size);
+        display: block;
+        object-fit: contain;
+        /* visual nudge + scale without affecting layout flow */
+        transform: translateX(var(--brand-logo-offset-x)) scale(var(--brand-logo-scale));
+        transform-origin: left center;
+        transition: transform 160ms ease;
+    }
+    .site-brand-text { font-weight: 800; color: #7b4f22; line-height: 1; font-size: var(--brand-text-size); display: inline-block; margin-left: 0.2rem; }
+
+    /* Stronger, high-specificity override so any remaining inline or page-level
+       CSS doesn't prevent the brand from scaling. This uses the nav structure
+       and !important to be decisive while remaining low-risk. */
+    .site-nav .nav-inner .header-brand-link .site-brand-text {
+        font-size: var(--brand-text-size) !important;
+        line-height: 1 !important;
+        font-weight: 800 !important;
+    }
 
      /* Note: we intentionally avoid increasing the brand font-size on wider
          screens so the navbar retains its compact height. If you'd like the
          letters to appear larger without changing layout, we can use a
          transform-based visual scale instead (which doesn't affect flow). */
+
+/* Small-screen adjustment: keep brand text readable but avoid header overflow
+   on very narrow viewports (phones). This lowers the variable slightly below
+   ~360px width so the header remains compact. */
+@media (max-width: 420px) {
+    /* Mobile: slightly smaller but still prominent */
+    :root { --brand-text-size: 1.8rem; --brand-logo-size: 40px; }
+}
 
 
 
@@ -486,3 +579,40 @@ footer a:hover {
 
 /* Slightly increase spacing around blog cards */
 .blog-card { margin: 0.25rem 0; }
+
+/* Mobile navigation fixes: ensure mobile menu links wrap and don't overflow their boxes */
+@media (max-width: 768px) {
+    /* Make mobile menu links break and wrap to avoid text overflowing their containers */
+    .mobile-nav-link, .mobile-nav-link > * {
+        white-space: normal !important;
+        word-break: break-word !important;
+        overflow-wrap: anywhere !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Ensure the mobile menu container uses full width and padding doesn't cause overflow */
+    #mobileMenu {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding-inline: 0.5rem !important;
+    }
+
+    /* Slightly reduce CTA/nav padding on very small screens to keep the items inside their boxes */
+    .site-nav .nav-inner { gap: 0.5rem !important; }
+    .nav-link, .mobile-nav-link { padding-inline: 0.6rem !important; }
+}
+.search-hit, mark.search-hit { 
+    background: linear-gradient(90deg, rgba(255,246,221,0.9), rgba(255,235,179,0.95));
+    padding: 0 .12rem;
+    border-radius: 0.15rem;
+    color: inherit;
+}
+.no-results { 
+    display: none; 
+    text-align: center; 
+    color: #7b5a22; 
+    font-style: italic; 
+    padding: 1rem; 
+    margin-top: 1.2rem; 
+}
+.no-results.show { display: block; }

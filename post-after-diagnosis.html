@@ -4,12 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>After Diagnosis — NeuroBloomz</title>
+    <!-- Favicons (copied from index) -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-512.png">
+    <link rel="shortcut icon" href="assets/favicon.ico">
+    <link rel="icon" href="assets/logo.png" sizes="any">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="max-w-4xl mx-auto px-6 py-10">
-    <a href="4th draft.html#blog" onclick="showPage('blog'); window.location.hash='blog'; return false;" class="btn-primary inline-block mb-6">← Back to blog</a>
+    <a href="blog.html" class="btn-primary inline-block mb-6">← Back to blog</a>
 
         <article class="post-card glass-effect rounded-2xl overflow-hidden">
             <!-- Post header: hero image centered, then title + meta centered below -->
@@ -55,5 +63,39 @@
             </div>
         </article>
     </div>
+    <footer class="w-full footer-custom tt-drugs-font"></footer>
+    <script src="assets/footer-standard.js?v=20251107"></script>
+
+    <!-- Floating dyslexia toggle for this page -->
+    <button id="homeDyslexicToggle" class="dys-toggle" aria-pressed="false" title="Dyslexic Font Accessibility" aria-label="Toggle Dyslexic Font Accessibility">Dyslexic Font Accessibility</button>
+
+    <script>
+        (function(){
+            const FOOTER_BTN = document.getElementById('footerDyslexicToggle');
+            const HOME_BTN = document.getElementById('homeDyslexicToggle');
+
+            function applyState(enabled){
+                if(enabled) document.documentElement.classList.add('dyslexic');
+                else document.documentElement.classList.remove('dyslexic');
+                if(FOOTER_BTN) FOOTER_BTN.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+                if(HOME_BTN) HOME_BTN.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+            }
+
+            function toggle(){
+                const cur = localStorage.getItem('useDyslexic') === 'true';
+                localStorage.setItem('useDyslexic', (!cur).toString());
+                applyState(!cur);
+            }
+
+            if(FOOTER_BTN) FOOTER_BTN.addEventListener('click', toggle);
+            if(HOME_BTN) HOME_BTN.addEventListener('click', toggle);
+
+            if(FOOTER_BTN) FOOTER_BTN.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); FOOTER_BTN.click(); }});
+            if(HOME_BTN) HOME_BTN.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); HOME_BTN.click(); }});
+
+            const enabled = localStorage.getItem('useDyslexic') === 'true';
+            applyState(enabled);
+        })();
+    </script>
 </body>
 </html>

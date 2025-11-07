@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources — NeuroBloomz</title>
+    <!-- Favicons (copied from index) -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-512.png">
+    <link rel="shortcut icon" href="assets/favicon.ico">
+    <link rel="icon" href="assets/logo.png" sizes="any">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <script>
+        // Immediate header-fix: ensure header is fixed and content is offset.
+        (function(){
+            function applyFix(){
+                try{
+                    var nav = document.querySelector('.site-nav');
+                    if(!nav) return false;
+                    nav.classList.add('site-nav-fixed');
+                    function adjust(){
+                        var h = Math.ceil(nav.getBoundingClientRect().height || 0);
+                        var main = document.querySelector('main');
+                        if(main) main.style.paddingTop = h + 'px';
+                        document.documentElement.style.setProperty('--site-nav-height', h + 'px');
+                        document.documentElement.style.setProperty('scroll-padding-top', h + 'px');
+                    }
+                    adjust();
+                    window.addEventListener('resize', adjust, { passive: true });
+                    return true;
+                }catch(e){ return false; }
+            }
+            if(!applyFix()){
+                // nav not yet parsed; run after DOM is ready
+                document.addEventListener('DOMContentLoaded', applyFix);
+            }
+        })();
+    </script>
+    <nav class="site-nav shadow-xl border-b-2 border-amber-200 sticky top-0 z-50 glass-effect" style="background: linear-gradient(135deg, #f0d9b3 0%, #e0c39a 50%, #d1aa78 100%);">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 w-full nav-inner">
+            <div class="header-brand">
+                <a href="index.html" aria-label="NeuroBloomz home" class="header-brand-link">
+                    <img src="logo w out bg.png" alt="NeuroBloomz logo" class="header-logo" width="48" height="48" onerror="this.style.display='none';" />
+                    <span class="lovelace-font site-brand-text">NeuroBloomz</span>
+                </a>
+            </div>
+            <div class="hidden md:block nav-links">
+                <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold tt-drugs-font" href="index.html">Home</a>
+                <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold tt-drugs-font" href="about-website.html">About Website</a>
+                <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold tt-drugs-font" href="about-me.html">About Me</a>
+                <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold tt-drugs-font" href="neurodivergency.html">Neurodivergency</a>
+                <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold tt-drugs-font" href="blog.html">Blog</a>
+                <a class="nav-link active px-4 py-2 rounded-lg text-sm font-semibold tt-drugs-font" href="resources.html">Resources</a>
+                <a class="nav-link px-4 py-2 rounded-lg text-sm font-semibold tt-drugs-font" href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="min-h-screen py-20" style="background-color: #faf5e8;">
+        <div class="max-w-7xl mx-auto px-4">
+
+
+    <!-- Resources Page -->
+    <div id="resources" class="page active"></div>
+        <div class="min-h-screen py-20" style="background-color: #faf5e8;">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-16 relative">
+                    <div class="absolute top-0 left-1/4 text-3xl opacity-20 sparkle pointer-events-none" style="animation-delay: 1s;"><i class="fas fa-paint-brush text-pink-200"></i></div>
+                    <div class="absolute top-10 right-1/4 text-2xl opacity-15 wiggle pointer-events-none" style="animation-delay: 3s;"><i class="fas fa-pencil-alt text-yellow-200"></i></div>
+                    <div class="absolute -top-5 left-1/2 text-4xl opacity-25 pulse-soft pointer-events-none" style="animation-delay: 2s;"><i class="fas fa-book text-amber-200"></i></div>
+                    <h1 class="lovelace-font gradient-text mb-8 mobile-text" style="font-size: 4rem; line-height: 1.1;">
+                        <i class="fas fa-book-open text-amber-400"></i> Resources
+                    </h1>
+                    <p class="tt-drugs-font text-amber-700 text-2xl mb-12 max-w-4xl mx-auto">
+                        Educational activities and worksheets designed to support child development across various skill areas
+                    </p>
+                    
+                    <div class="sub-nav-container flex flex-wrap justify-center items-center gap-4 mb-12">
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <button class="filter-btn active btn-primary text-white px-6 py-4 rounded-full text-sm tt-drugs-font font-semibold hover:scale-105 transition-all duration-300" data-filter="all" onclick="filterResources('all')">
+                                <span class="sparkle"><i class="fas fa-star text-yellow-300"></i></span> All Resources
+                            </button>
+                            <button class="filter-btn bg-blue-100 hover:bg-blue-200 text-blue-800 px-6 py-4 rounded-full text-sm tt-drugs-font font-semibold hover:scale-105 transition-all duration-300" data-filter="visual" onclick="filterResources('visual')">
+                                <span class="wiggle"><i class="fas fa-eye text-blue-300"></i></span> Visual Skills
+                            </button>
+                            <button class="filter-btn bg-purple-100 hover:bg-purple-200 text-purple-800 px-6 py-4 rounded-full text-sm tt-drugs-font font-semibold hover:scale-105 transition-all duration-300" data-filter="motor" onclick="filterResources('motor')">
+                                <span class="pulse-soft"><i class="fas fa-hand-paper text-purple-300"></i></span> Motor Skills
+                            </button>
+                            <button class="filter-btn bg-pink-100 hover:bg-pink-200 text-pink-800 px-6 py-4 rounded-full text-sm tt-drugs-font font-semibold hover:scale-105 transition-all duration-300" data-filter="attention" onclick="filterResources('attention')">
+                                <span class="sparkle"><i class="fas fa-clock text-pink-300"></i></span> Attention
+                            </button>
+                            <button class="filter-btn bg-yellow-100 hover:bg-yellow-200 text-yellow-800 px-6 py-4 rounded-full text-sm tt-drugs-font font-semibold hover:scale-105 transition-all duration-300" data-filter="language" onclick="filterResources('language')">
+                                <span class="wiggle"><i class="fas fa-comment-dots text-yellow-300"></i></span> Language
+                            </button>
+                            <button class="filter-btn bg-green-100 hover:bg-green-200 text-green-800 px-6 py-4 rounded-full text-sm tt-drugs-font font-semibold hover:scale-105 transition-all duration-300" data-filter="spatial" onclick="filterResources('spatial')">
+                                <span class="pulse-soft"><i class="fas fa-compass text-green-300"></i></span> Spatial Skills
+                            </button>
+                        </div>
+
+                        <!-- Search input: responsive, wraps on small screens -->
+                        <div class="w-full sm:w-auto">
+                            <label for="resourceSearch" class="sr-only">Search resources</label>
+                            <input id="resourceSearch" type="search" placeholder="Search resources by title, description or tag" aria-label="Search resources" class="w-full sm:w-72 px-4 py-3 rounded-xl border border-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-300 tt-drugs-font" />
+                        </div>
+                    </div>
+                    </div>
+                
+                <div id="resourcesGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual motor attention">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-paint-brush text-pink-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Color It All!</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Gather markers, pens, paint, whatever art supplies are on hand. Tell the child to color the objects or animals based on their ideas. This helps kids with dysgraphia with their abilities. It can improve attention skills if you put a song on or just make the room really quiet. It can also help with fine motor skills.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Visual Discrimination</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Visual Figure Ground Perception</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Sustained Attention</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Alternating Attention</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Fine Motor Skills</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1z2EasnL-z4o_t9O_Z1qGnP-gmqXShctF/view?usp=sharing', '_blank')" class="download-btn w-full bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-pink-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+                
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual attention language">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-search text-yellow-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Find the Shadow</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Match the animal or object to its shadow. Ask the child questions about whether they like the object or whether they've seen the object before. This is an individual task but engage during the completion. Help only when necessary.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Visual Discrimination</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Visual Closure</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Inference Skills</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Sustained Attention</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Behavior Modification</span>
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Language Skills</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1P44g8FjlIU1f51q1ns3a9vtkiLiF9RQn/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-purple-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="spatial motor attention">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-map-marked-alt text-teal-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Find the Treasure!</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Take the child to another room and have them follow the treasure hunt. The directions are given in each slide. Tell them to use their fingers to follow along with the directions or a pen.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-teal-100 text-teal-800 px-4 py-2 rounded-full">Spatial Relationship</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Motor Skills</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Following Directions</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Sustained Attention</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1eVG7SWFGBbvdTd92pirU_2Rmo33FQSY5/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-teal-500 to-green-500 hover:from-teal-600 hover:to-green-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-green-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+                    
+                
+                <div id="noResults" class="no-results">No results found. Try a different search or category.</div>
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual language">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-font text-yellow-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Find the Word!</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                This is a word search. Find the words on the puzzle from the list on the side. This is an individual activity. If the child needs help, then give aid based on need.
+                            </p>
+                            <div class="bg-amber-50 p-4 rounded-lg mb-4">
+                                <p class="tt-drugs-font text-amber-800 text-sm font-semibold mb-2">Assembly:</p>
+                                <p class="tt-drugs-font text-amber-700 text-sm">Print out the worksheet and laminate it if possible. Give the child a pen or a dry erase pen to write their answers on it.</p>
+                            </div>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Visual Figure Ground Perception</span>
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Language</span>
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Visual Discrimination</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1Rwdd8eobaimFT-ZhKj5Hs3ILtkTd_voV/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-indigo-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual motor attention">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-sort-numeric-up text-emerald-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Form Constancy Math Worksheet</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Complete all the math problems in both formats within a given time frame, based on the child's ability. This is an individual task.
+                            </p>
+                            <div class="bg-amber-50 p-4 rounded-lg mb-4">
+                                <p class="tt-drugs-font text-amber-800 text-sm font-semibold mb-2">Assembly:</p>
+                                <p class="tt-drugs-font text-amber-700 text-sm">Laminate the paper or print it out for the child to use. Use a pen or dry erase marker if it is laminated to match the images.</p>
+                            </div>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Form Constancy</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Sustained Attention</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Fine Motor Skills</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Numerical Literacy</span>
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Critical Thinking Skills</span>
+                                <span class="skill-badge bg-teal-100 text-teal-800 px-4 py-2 rounded-full">Inference Skills</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1cBdcrZ-UqkPPTdRHKUGfHd4WVuaH7xe5/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-teal-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="spatial motor attention">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-home text-orange-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Help Them Get Home!</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Print out images of animals and cut them out. The images are given. Attach each image to a popsicle stick and ask the child to move the image using that. Ask the child to choose one image as their character. The child needs to use their critical thinking skills to lead their character home in the shortest way possible.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-teal-100 text-teal-800 px-4 py-2 rounded-full">Spatial Relationship</span>
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Critical Thinking Skills</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Fine Motor Skills</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Following Directions</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Sustained Attention</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1F3bXmRoQHuQF4DNzxFKJ5qB2umpCu7oH/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-emerald-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+                                        <!-- New resource: Tangrams at Home -->
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="spatial visual math problem-solving creativity geometry" id="res-tangrams-at-home">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                                <span class="text-4xl mr-4"><i class="fas fa-square-root-variable text-indigo-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Tangrams at Home</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Cut out the pieces of cardboard as indicated. There will be two pieces of square cardboard — cut out both and ask the child to fit the shapes together so they form the shown target shape. Ask the child to name each shape before placing it down. Great for spatial awareness, visual discrimination, problem solving and geometry learning.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-teal-100 text-teal-800 px-4 py-2 rounded-full">Spatial Awareness</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Problem Solving</span>
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Geometry</span>
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Visual Discrimination</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Creativity</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <button onclick="window.open('https://drive.google.com/file/d/1CYgmuobpSsbiY6ai6S1QXYTxkX45rY4e/view?usp=sharing', '_blank')" class="download-btn flex-1 bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                                <i class="fas fa-file-download text-indigo-200 mr-2"></i>Download PDF
+                        </div>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="spatial motor attention">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-cloud text-pink-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Hop To It!</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                A small token is needed for this activity. A coin, chess piece, rock, anything. Move the token based on the instructions given on the side. Print out the images on a paper.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-teal-100 text-teal-800 px-4 py-2 rounded-full">Spatial Relationship</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Simple Numerical Literacy</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Fine Motor Skills</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Following Directions</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Sustained Attention</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1glskHYoYLvwZ5Ii_pAc_MzVSG3TSg2Uh/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fa-solid fa-file-download text-orange-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual attention language">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-eye text-blue-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">I Spy....</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Find this shape in the background. Ask the child to find the shape. Ask them questions and allow them to find the object on their own.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Visual Figure Ground Perception</span>
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Language Skills</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Sustained Attention</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/15VIpOTECp6hVN1X6ERjaWVbtq_x881mh/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-cyan-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual language">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-puzzle-piece text-purple-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Incomplete Asymmetrical Object</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                This activity can be performed in a group setting of 2-3 kids or single setting. Ask the child to match each object to the ones on the right. Ask the child what the object is, the color of the object, where they see it in real life, and if they like it. This is a more complicated version of the previous task, designed to take those skills to the next level.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Visual Memory</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Visual Closure</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Inference Skills</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Color Matching</span>
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Language</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1yeRzxNr3eeENOcHC8YTAepJyBENKv2tH/view?usp=drive_link', '_blank')" class="download-btn w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-pink-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual language">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-redo text-indigo-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Incomplete Symmetrical Object</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                This activity can be performed in a group setting of 2-3 kids or single setting. Ask the child to match each object to the ones on the right. Ask the child what the object is, the color of the object, where they see it in real life, and if they like it.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Visual Memory</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Visual Closure</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Inference Skills</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Color Matching</span>
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Language</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1bVII2h2fZKTOk48LwPwmKDuxIeQS5Oec/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-purple-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual motor attention">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-theater-masks text-yellow-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Match The Character</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Match the characters. Draw lines on the page to match the given pattern. Make the lines as straight as possible. To do this activity, the child needs to be able to hold a pen properly.
+                            </p>
+                            <div class="bg-amber-50 p-4 rounded-lg mb-4">
+                                <p class="tt-drugs-font text-amber-800 text-sm font-semibold mb-2">Assembly:</p>
+                                <p class="tt-drugs-font text-amber-700 text-sm">Laminate the paper or print it out for the child to use. Use a pen or dry erase marker if it is laminated to match the images.</p>
+                            </div>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Form Constancy</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Sustained Attention</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Fine Motor Skills</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1pDBiLQZpSTgNTGnMr9tAx8mMW3ljHU1b/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-pink-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="language visual">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-comment-dots text-yellow-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Nonverbal Communication Images & Book</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                This contains different images that can be used by cerebral palsy children and non verbal children who need some help in communicating their needs. Print the sheets out and give to the child so they can use in their daily life.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Non Verbal Communication</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Basic Literacy</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Basic Form Constancy</span>
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Basic Visual Discrimination</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1_B9SSMICdrVyWL71LkldDYzOtbwYueB0/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-yellow-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual motor attention">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-baby text-pink-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Reunite the Lost Baby!</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Match the mom with the child. Draw lines on the page to match the given pattern. Make the lines as straight as possible. To do this activity, the child needs to be able to hold a pen properly.
+                            </p>
+                            <div class="bg-amber-50 p-4 rounded-lg mb-4">
+                                <p class="tt-drugs-font text-amber-800 text-sm font-semibold mb-2">Assembly:</p>
+                                <p class="tt-drugs-font text-amber-700 text-sm">Laminate the paper or print it out for the child to use. Use a pen or dry erase marker if it is laminated to match the images.</p>
+                            </div>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Form Constancy</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Sustained Attention</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Fine Motor Skills</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1bWcTUpytzMGTDwm_Ch0maiXMp7BHLLMl/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-rose-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="spatial motor">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-ear-listen text-teal-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Spatial Hearing Game</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Gather a group of children into a large room or space. Now, blindfold all of them. Enlist one of the children to be the Ruler and the rest as Subjects. The Ruler is not blindfolded and must run around the room, keeping each Subject stationary. After the Subjects have been arranged, the Ruler must walk around the room and make noises. First, they must make loud noises and slowly become quieter. Each Subject must turn around based on where the noise is from. The Ruler must not get tagged or touched during any of this. Whichever Subject touches the Ruler first will win the game and will become the next Ruler.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-teal-100 text-teal-800 px-4 py-2 rounded-full">Spatial Hearing</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Motor Coordination</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Social Interactions</span>
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Behavior in Group Setting</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Ability to Follow Directions</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1VYd0rDrfh7MHId2osk8xTOMUX42CT2EJ/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-cyan-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-bullseye text-purple-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Spot it!</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Gather a group of children and ask them to spot the same item between two cards. There will be one object or item that is the same between every two cards.
+                            </p>
+                            <div class="bg-amber-50 p-4 rounded-lg mb-4">
+                                <p class="tt-drugs-font text-amber-800 text-sm font-semibold mb-2">Assembly:</p>
+                                <p class="tt-drugs-font text-amber-700 text-sm">Cut each card into a square.</p>
+                            </div>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Improve Group Behavior</span>
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Communication</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Visual Discrimination</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Reaction Times</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Processing Ability</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1f5iohZEIwWZuhYG78KmalgHs_OVnHTzC/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-violet-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual attention">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-eye text-emerald-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Spot the Odd One Out!</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                This is called spot the odd one out. It's used to teach the child to make inferences, identify objects in daily life, and figure out when something doesn't belong somewhere. It can improve attention since the child is sustaining attention on one particular task for an extended period of time. First, ask the child what they see here. Then, ask which one is the odd one out. After, ask for their reasoning. If they are wrong, ask again. Ask them open ended questions like if they like the object or where do they see it in real life. Engage with the child for an extended period of time during this activity as well.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Visual Discrimination</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Inference Skills</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Behavior Modification</span>
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Vocabulary</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Communication Skills</span>
+                                <span class="skill-badge bg-teal-100 text-teal-800 px-4 py-2 rounded-full">Critical Thinking & Reasoning</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/16g4Te5kqVBq1G1afoMVXTyEm_U1IDYdc/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-purple-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="motor attention">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-hands text-emerald-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Stringing Bead Activity</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Gather a variety of beads in different colors and sizes. Choose bead sizes that are appropriate for the child, or mix multiple sizes to create patterns. Have the child create a pattern or give them one and tell them to string the beads in the specified pattern. This activity will help improve the child's selective and sustained attention, as they will be engaged for an extended period. Additionally, it promotes alternative attention since the child will constantly switch between stringing beads and matching colors to the pattern. Focusing on this task will enhance the child's ability to concentrate on a single activity. Stringing the beads onto the provided yarn or rope will also aid in developing fine motor skills.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Sustained Attention</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Selective Attention</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Alternative Attention</span>
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Concentration</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Fine Motor Skills</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1O3o8nJLN5i-3Y82_S8zsgUNcn0HSRT-v/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-teal-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="attention">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-rainbow text-pink-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Stroop Task</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Improve cognitive performance, focus, and ability to perform tasks like studying and working. Take the child to another room. Take the worksheet provided. You must read out the color, not the word. Take the shortest time possible to do so.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Cognitive Performance</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Focus</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Task Performance</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Processing Speed</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1-wrcxBPpeLOmEcNgsRXDBUioaXVNCWXn/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-rainbow-500 to-pink-500 hover:from-rainbow-600 hover:to-pink-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300" style="background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #dda0dd);">
+                            <i class="fas fa-file-download text-pink-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual attention">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-clipboard-list text-pink-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">The Repetition Game</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Identify the amount of times a specific word or number repeats on the page in a specific time frame based on the child's level.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Visual Figure Ground Perception</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Number Literacy</span>
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Visual Discrimination</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Sustained Attention</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1UBFJ96FngEk9vFUEIUll5oPhXtjzJR8-/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-cyan-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-book-open text-pink-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">VC Math Worksheets</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Take the child to a room and have them do these worksheets. Help them out if they need help but don't give them the answers. Worksheet 1 is meant for students of higher grades while Worksheet 2 is meant for students of younger grades to introduce them to the idea of visual closure, form constancy, and math.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Visual Closure</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Improving Math Skills</span>
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Inference Skills</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Understanding Numerical Quantities</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Form Constancy</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/12DBrDo1ZGhKVuvp-iAmBp3JYOn4qCRDx/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-pink-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual attention">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-eye text-pink-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Visual Memory Activity</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Cut out the images on the next couple of pages into strips. Place them on a ring after cutting out the places given. After putting them onto a ring with the respective questions, have the child sit down in a quiet area with the adult. Show the child the images for a couple of seconds, and then go to the next page. Ask the child to answer the question gently. This will stimulate their brains and cause the neuron pathways that work regarding visual memory to become stronger.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Visual Memory</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Sustained Attention</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Concentration</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Visual Discrimination</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1WvIynNcdQ73IlRsvZjX9VCd8Iw-VPBAT/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-pink-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual motor language">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-paint-brush text-pink-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Warli Art Activity</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Warli art is a form of art with shapes and circles. To do this at home or with a group of students, you need paint, potatoes or fruits, ladies' fingers, onions, paint brushes or q-tips, and other scraps or vegetables. After cutting the veggies into diamonds, circles, and triangles, place them on a platter. This allows the children to take the veggies and paint them. Place the paint a little far away so they need to ask their friends for it, focusing on behavior modification. Asking them which color is which and to place the colors and shapes on the paper properly works with visual discrimination, language, and fine motor skills.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Visual Discrimination</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Behavior Modification</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Fine Motor Skills</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Visual Form Constancy</span>
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Social Skills</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1UoAa_nHDhHteU0KdZRMC2YCyvmDWLWSO/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-pink-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-brain text-pink-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Who Did What? - Visual Memory Activity</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Take the child into an individual setting. Show an image for 10-30 seconds then ask the child to answer the questions. This is a more complicated version of the previous exercise.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Visual Memory</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Visual Discrimination</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Recognition of Figures</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/17BEuCVY6XW1rxgLO5bz5cfzYkrqhb0Eh/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-pink-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual language">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-puzzle-piece text-pink-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Match the Letter!</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Match the letters, words, and numbers on the left to the same one on the right, regardless of font, color, capitalization, etc. There are many levels for this, starting with Print to Brush or Cursive, until words. Use the level that is right for the child, based upon their ability. Bonus: Try challenging them to complete this within a given time frame.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Visual Sequential Memory</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Visual Discrimination</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Form Constancy</span>
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Basic Literacy Skills</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Numerical Understanding</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1pDBiLQZpSTgNTGnMr9tAx8mMW3ljHU1b/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-teal-500 to-blue-500 hover:from-teal-600 hover:to-blue-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-teal-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual language">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-cloud text-pink-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Spot the Difference!</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Ask the child to circle the 10 differences between the images. Ask them questions about the setting, the people, the expressions, and what the contextual clues might tell about the background of the people or creatures.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Visual Sequential Memory</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Visual Discrimination</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Inference Skills</span>
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Basic Language Skills</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1syrFqeccYTkBIJ9QnK6B1KEwp2QPmS4o/view?usp=sharing', '_blank')" class="download-btn w-full bg-gradient-to-r from-cyan-500 to-teal-500 hover:from-cyan-600 hover:to-teal-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-cyan-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="motor attention language spatial">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-pen-nib text-orange-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Add the Spaces!</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Ask the child to write an article based on any topic of their choosing. The writing must fill the page below. Ask them to use the finger method and space their writing out on the lines below. Print out as many copies of the page below as needed. This can greatly help children with dysgraphia.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Fine Motor Skills</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Sustained Attention</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Writing Skills</span>
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Language Skills</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Literacy Skills</span>
+                                <span class="skill-badge bg-teal-100 text-teal-800 px-4 py-2 rounded-full">Spatial Skills</span>
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Creativity</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1bB4LJMh8eKsh_MdQEKuBvjuniGZ3bt_2/view?usp=sharing', '_blank')" class="download-btn w-full bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-emerald-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual language">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-globe-americas text-green-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Visual Closure Real World Activity</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Ask the child to answer the question on each respective page. Ask follow up questions, lead them to different answers, and ask them to define opinions and justify their thinking.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Visual Closure</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Inference Skills</span>
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Critical Thinking Skills</span>
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Language</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1Es9xGOQznKUbKPA3v5TgUTp9t6WRHa19/view?usp=sharing')" class="download-btn w-full bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-green-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual language attention">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-comment-dots text-purple-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Finish the Thought!</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Ask the child to finish the sentence or thought. The instructor can either read the thought to the child if the targeted skill is auditory closure or have the child read and answer the prompts on their own if the targeted skill is visual closure. This activity can also be done with stories. Here, there are two ways to do it, using sentences and images. With images, ask the child what the next logical step is or what the person will do next. This is great for children with Autism Spectrum Disorder struggling with understanding the world around them.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Auditory Closure/Visual Closure</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Sustained Attention</span>
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Literacy Skills</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Writing Skills</span>
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Articulation Skills</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Contextual Skills</span>
+                                <span class="skill-badge bg-teal-100 text-teal-800 px-4 py-2 rounded-full">Inference Skills</span>
+                           </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1-1eubTNGwgW5u2Eh6tXY0ZyzjMDXsSi6/view?usp=sharing', '_blank')" class="download-btn w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-purple-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="motor attention">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-volume-up text-blue-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Identify the Sound!</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Given the list of words below, the child has to tick the sound. For example, for the word seen, the sound 'ee' will be checked off.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Fine Motor Skills</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Auditory Discrimination</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Sustained Attention</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Alternating Attention</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1-YBE4FWtWGebiB8FvOQN1fcjBtrAhOyg/view?usp=sharing', '_blank')" class="download-btn w-full bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-blue-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="spatial">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                        <span class="text-4xl mr-4"><i class="fas fa-kiwi-bird text-green-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Follow the Shepherd</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Divide a group of children into two teams: the sheep and the assigned shepherd. The Shepherds need to make a treasure hunt for the sheep, and they need to direct the sheep to the prizes. The sheep are blindfolded.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-teal-100 text-teal-800 px-4 py-2 rounded-full">Spatial Hearing</span>
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Spatial Orientation</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Auditory Closure</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Group Activity</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/10MKlXdVQgAoT6P9nsbNvjxBLSUDMicf8/view?usp=sharing', '_blank')" class="download-btn w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-green-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="language">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                                <span class="text-4xl mr-4"><i class="fas fa-comments text-pink-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">End the Thought!</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Start a sentence with one of the following words: Rose, Water, Painting, Pillow, Satchel, Book; then the last word of the sentence will be the first word for the next person's sentence. This can be used to tell a story or a random thought. This can be a group activity or a singular activity, but it's more fun and engaging as a group.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Language & Word Recall</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Literacy Skills</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Group Skills</span>
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Creativity</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/15SX0y95ivkraO_XAijuQRvan6oJNfmaE/view?usp=sharing', '_blank')" class="download-btn w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-yellow-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual language">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                                <span class="text-4xl mr-4"><i class="fas fa-brain text-purple-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">The Memory Game!</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                The instructor reads the list of animals. The child must circle all of the animals stated by the instructor after 30 seconds.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Auditory Memory</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Form Constancy</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Visual Discrimination</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Literacy Skills</span>
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Language Skills</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1aeBkuPdGJA6MQyh5L3XHAxXuMJYlYp57/view?usp=sharing', '_blank')" class="download-btn w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-purple-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual language">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                                <span class="text-4xl mr-4"><i class="fas fa-puzzle-piece text-amber-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Puzzle the Word!</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Ask the child to puzzle the word out using the phonetic spellings and vice versa. This can be made by the instructor with phonetics tailored to the child. A sample is attached.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Auditory Analysis and Blending</span>
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Auditory Closure</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Inference Skills</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Visual Discrimination</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Writing Skills</span>
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Basic Literacy and Language Skills</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1bekbzbXmV-A95c9a58u9HYB_YSfdex15/view?usp=sharing', '_blank')" class="download-btn w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-indigo-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="language">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                                <span class="text-4xl mr-4"><i class="fas fa-user-secret text-yellow-400"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">The Detective Game!</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Read the passage to the child or ask the child to read the passage. Then ask the child the adjoining questions. Maybe use a hat or a prop that can be used as the "Detective," and the person who solves the problem first gets to wear it. This can be used in a group setting as well. The game works especially well with a group because then the children can observe others and their answers so they can identify the patterns and understand social situations. Remember: This is to help the children solve social situations and give them the ability to analyze their surroundings.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Literacy Skills</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Language Skills</span>
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Auditory Closure</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Inference Skills</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Contextual Skills</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1yJMrk7pnbVcS4hnYSEFPJtJM1I_HAZqa/view?usp=sharing', '_blank')" class="download-btn w-full bg-gradient-to-r from-amber-500 to-red-500 hover:from-amber-600 hover:to-red-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-blue-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual language literacy inference">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                                <span class="text-4xl mr-4"><i class="fas fa-heart text-pink-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Emotional Reading Activity</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Read through each passage and ask the child the provided questions. Help them as needed so they can begin to identify patterns. The passages are written in a dyslexia-friendly font when required. Focus on pattern recognition, reversals, and inference while encouraging discussion about feelings and situations in the text.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Pattern recognition</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Visual discrimination</span>
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Reversals</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Language & Literacy</span>
+                                <span class="skill-badge bg-teal-100 text-teal-800 px-4 py-2 rounded-full">Inference skills</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/14n7-VnRX4KgwvE-w3IOgFnyMy5tRWW1tR/view?usp=sharing', '_blank')" class="download-btn w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-pink-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <!-- Insert Space Reading Activity into resources grid -->
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="visual language literacy motor spatial" id="res-space-reading">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                                <span class="text-4xl mr-4"><i class="fas fa-book-reader text-indigo-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Space Reading Activity</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Read through the story with the child. The language is aimed at upper-level readers; spending time looking at the images and exposing the child to new, more advanced vocabulary supports development. Read the story, answer questions they have, and ask them about the plot, characters, and sentences. Have them turn the page and follow the words with their finger as they read. This is an upper-level story set in a fantastical land.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Visual discrimination</span>
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Language development</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Literacy</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Basic motor skills</span>
+                                <span class="skill-badge bg-teal-100 text-teal-800 px-4 py-2 rounded-full">Spatial skills</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Foreground perception</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1cT0Ht9sac6MeuP68JmsfDWIuBthHpd7M/view?usp=sharing', '_blank')" class="download-btn w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-indigo-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <!-- New resource: Color Math -->
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="attention math numerical visual language" id="res-color-math">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                                <span class="text-4xl mr-4"><i class="fas fa-th-large text-indigo-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Color Math</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Each color has been assigned a number. Ask the child to use their token and jump from color to color on the mat. This can be done in real life with a colorful mat, carpet, or blanket, but doing it on paper works as well. The child can play and use energy while doing the math. Choose operations based on the child's skill level; students can pick numbers for extra engagement. These examples develop number skills and attention.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Sustained Attention</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Alternative Attention</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Numerical Literacy</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Mathematical Operations</span>
+                                <span class="skill-badge bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">Color Literacy</span>
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Language Literacy</span>
+                                <span class="skill-badge bg-teal-100 text-teal-800 px-4 py-2 rounded-full">Visual Discrimination</span>
+                                <span class="skill-badge bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full">Visual Closure</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1pHz8MHADZEo68wiMBnBlH-joF_TAn7-A/view?usp=sharing', '_blank')" class="download-btn w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-indigo-400 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <!-- New resource: Math Hopping Game -->
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="social spatial math numerical attention motor form-constancy" id="res-math-hopping-game">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                                <span class="text-4xl mr-4"><i class="fas fa-dice text-yellow-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Math Hopping Game</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                If you answer wrong, move back 2 steps. Answer the question next to each card. Roll the dice and only enter the game if you roll a six. Landing on a star card doubles the steps forward or back. Designed for group play; an empty instructor version lets you fill in problems, reversals, or verbal prompts. This activity is flexible and can be used in many different ways.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Social Skills</span>
+                                <span class="skill-badge bg-teal-100 text-teal-800 px-4 py-2 rounded-full">Spatial Skills</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Mathematical Skills</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Numerical Literacy</span>
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Sustained Attention</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Fine Motor Skills</span>
+                                <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full">Alternative Attention</span>
+                                <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full">Form Constancy</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/13ihbceXmDdPRw9I8JtM4DIZD2yHnxFYE/view?usp=sharing', '_blank')" class="download-btn w-full bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-yellow-200 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                    <!-- New resource: Mathematical Hopscotch -->
+                    <div class="resource-card glass-effect rounded-3xl p-8 shadow-xl card-hover border-2 border-white/50" data-tags="attention visual numerical spatial math" id="res-mathematical-hopscotch">
+                        <div class="mb-6">
+                            <div class="flex items-center mb-6">
+                                <span class="text-4xl mr-4"><i class="fas fa-shoe-prints text-green-300"></i></span>
+                                <h3 class="lovelace-font text-amber-900 text-xl">Mathematical Hopscotch</h3>
+                            </div>
+                            <p class="tt-drugs-font text-amber-700 mb-6 leading-relaxed">
+                                Use a token and move in the hopscotch game. The mathematical operation is kept in the middle and the answer options appear in the surrounding boxes; choose the option that gives the correct answer. In a group setting the instructor can run races to see who completes the course fastest. This activity supports numerical thinking while keeping children active.
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-6">
+                                <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full">Sustained Attention</span>
+                                <span class="skill-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full">Alternative Attention</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Visual Discrimination</span>
+                                <span class="skill-badge bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full">Visual Closure</span>
+                                <span class="skill-badge bg-teal-100 text-teal-800 px-4 py-2 rounded-full">Foreground Perception</span>
+                                <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Numerical Literacy</span>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://drive.google.com/file/d/1wVIwiaBnq9DPL3BMP-cqAdedFfYPxD8H/view?usp=sharing', '_blank')" class="download-btn w-full bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white px-6 py-4 rounded-xl tt-drugs-font font-semibold transition-all duration-300">
+                            <i class="fas fa-file-download text-teal-200 mr-2"></i>Download PDF
+                        </button>
+                    </div>
+
+                </div>
+
+                
+
+                <!-- Back to top floating button (appears after scrolling) -->
+                <button id="backToTopBtn" class="back-to-top" aria-label="Back to Top of Page" title="Back to Top of Page">
+                    <i class="fas fa-arrow-up" style="width:1.1rem; text-align:center;"></i>
+                    <span style="font-size:0.9rem;">Back to Top of Page</span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </main>
+
+    <footer class="w-full footer-custom tt-drugs-font">
+        <div class="footer-inner">
+            <div class="max-w-xs text-base">
+                <h2 class="lovelace-font text-2xl mb-2"><i class="fas fa-seedling text-pink-300"></i> NeuroBloomz</h2>
+                <p class="tt-drugs-font text-amber-900">Supporting child development with activities and resources.</p>
+                <div style="margin-top:0.75rem;">
+                    <button id="footerDyslexicToggle" class="dys-toggle" aria-pressed="false" title="Dyslexic Font Accessibility" aria-label="Toggle Dyslexic Font Accessibility">Dyslexic Font Accessibility</button>
+                </div>
+            </div>
+            <div class="footer-nav flex flex-wrap gap-12 text-base font-semibold tt-drugs-font">
+                        <div>
+                            <ul class="space-y-2">
+                                <li><a href="index.html" class="text-black hover:text-black">Home</a></li>
+                                <li><a href="about-website.html" class="text-black hover:text-black">About Website</a></li>
+                                <li><a href="about-me.html" class="text-black hover:text-black">About Me</a></li>
+                                <li><a href="contact.html" class="text-black hover:text-black">Contact Me</a></li>
+                                <li><a href="blog.html" class="text-black hover:text-black">Blog</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="space-y-2">
+                                <li><a href="autism.html" class="text-black hover:text-black font-semibold">Autism Spectrum Disorder</a></li>
+                                <li><a href="adhd.html" class="text-black hover:text-black font-semibold">ADHD</a></li>
+                                <li><a href="specific-learning-disorders.html" class="text-black hover:text-black font-semibold">Specific Learning Disabilities</a></li>
+                                <li><a href="language-development.html" class="text-black hover:text-black font-semibold">Language Development</a></li>
+                                <li><a href="types-of-attention.html" class="text-black hover:text-black font-semibold">Types of Attention</a></li>
+                            </ul>
+                        </div>
+            </div>
+        </div>
+        <div class="footer-credit" style="font-size:0.68rem; color:rgba(0,0,0,0.65); text-align:center; margin-top:0.5rem;">
+            <div>Created from the original single-file site — split into separate pages for clarity.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Resource filtering + search functionality (with highlighting and no-results)
+        function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+        function removeHighlightsFrom(el){ if(!el) return; el.innerHTML = el.innerHTML.replace(/<mark class="search-hit">(.*?)<\/mark>/gi, '$1'); }
+        function highlightTextIn(el, term){ if(!el || !term) return; removeHighlightsFrom(el); const words = term.split(/\s+/).filter(Boolean); if(words.length===0) return; let html = el.innerHTML; words.forEach(w => { const re = new RegExp('(' + escapeRegExp(w) + ')','ig'); html = html.replace(re, '<mark class="search-hit">$1</mark>'); }); el.innerHTML = html; }
+
+        function filterResources(category, searchTerm) {
+            const cards = document.querySelectorAll('.resource-card');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const noResults = document.getElementById('noResults');
+
+            // normalize search term; if not provided, read from the search input
+            if (typeof searchTerm === 'undefined') {
+                const el = document.getElementById('resourceSearch');
+                searchTerm = el ? el.value : '';
+            }
+            searchTerm = (searchTerm || '').toLowerCase().trim();
+
+            // update active button
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            const activeBtn = Array.from(filterBtns).find(btn => btn.dataset && btn.dataset.filter === category);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            let visible = 0;
+            cards.forEach(card => {
+                const rawTags = (card.getAttribute('data-tags') || '').toLowerCase();
+                const tags = rawTags.split(/\s+/).filter(Boolean);
+
+                // gather title/description text for search matching
+                const titleEl = card.querySelector('h3');
+                const descEl = card.querySelector('p');
+                const title = (titleEl?.textContent || '').toLowerCase();
+                const desc = (descEl?.textContent || '').toLowerCase();
+                const combined = (title + ' ' + desc + ' ' + rawTags).trim();
+
+                const categoryMatch = (category === 'all') || tags.includes(category);
+                const searchMatch = !searchTerm || combined.indexOf(searchTerm) !== -1;
+
+                if (categoryMatch && searchMatch) {
+                    visible += 1;
+                    card.classList.remove('hidden');
+                    card.style.display = 'block';
+                    // highlight matches inside title + description
+                    if (searchTerm) {
+                        highlightTextIn(titleEl, searchTerm);
+                        highlightTextIn(descEl, searchTerm);
+                    } else {
+                        removeHighlightsFrom(titleEl);
+                        removeHighlightsFrom(descEl);
+                    }
+                } else {
+                    card.classList.add('hidden');
+                    card.style.display = 'none';
+                    // clear any existing highlights
+                    removeHighlightsFrom(titleEl);
+                    removeHighlightsFrom(descEl);
+                }
+            });
+
+            if(noResults){
+                if(visible === 0) noResults.classList.add('show'); else noResults.classList.remove('show');
+            }
+        }
+
+        // debounce helper for search input
+        function debounce(fn, wait) {
+            let t = null;
+            return function(...args) {
+                clearTimeout(t);
+                t = setTimeout(() => fn.apply(this, args), wait);
+            };
+        }
+
+        // wire the search input (if present) to the filter function
+        (function(){
+            const input = document.getElementById('resourceSearch');
+            if (!input) return;
+            const handler = debounce(function(){
+                const activeBtn = document.querySelector('.filter-btn.active');
+                const category = activeBtn?.dataset?.filter || 'all';
+                filterResources(category, this.value);
+            }, 220);
+            input.addEventListener('input', handler);
+            // allow Enter to run immediately
+            input.addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); const activeBtn = document.querySelector('.filter-btn.active'); const category = activeBtn?.dataset?.filter || 'all'; filterResources(category, this.value); }});
+        })();
+
+        // Ensure sticky header doesn't overlap content when navigating or scrolling
+        (function(){
+            function updateHeaderOffset(){
+                const nav = document.querySelector('.site-nav');
+                if(!nav) return;
+                const h = nav.getBoundingClientRect().height;
+                document.documentElement.style.setProperty('--site-nav-height', h + 'px');
+                // set scroll-padding-top on the root so anchor jumps respect header height
+                document.documentElement.style.setProperty('scroll-padding-top', h + 'px');
+                // also set a top padding on main so the content is not overlapped
+                const main = document.querySelector('main');
+                if(main) main.style.paddingTop = h + 'px';
+            }
+            window.addEventListener('resize', updateHeaderOffset, { passive: true });
+            window.addEventListener('load', updateHeaderOffset);
+            updateHeaderOffset();
+        })();
+
+        // Back-to-top button
+        (function(){
+            const btn = document.getElementById('backToTopBtn');
+            if (!btn) return;
+            const showAfter = 240;
+            function onScroll() { if (window.scrollY > showAfter) btn.classList.add('show'); else btn.classList.remove('show'); }
+            btn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        })();
+
+        // Dyslexia toggle persistence (minimal)
+        (function(){
+            const FOOTER_BTN = document.getElementById('footerDyslexicToggle');
+            const HOME_BTN = document.getElementById('homeDyslexicToggle');
+            function applyState(enabled){
+                if(enabled) document.documentElement.classList.add('dyslexic');
+                else document.documentElement.classList.remove('dyslexic');
+                if(FOOTER_BTN) FOOTER_BTN.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+                if(HOME_BTN) HOME_BTN.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+            }
+
+            function toggle(){
+                const cur = localStorage.getItem('useDyslexic') === 'true';
+                localStorage.setItem('useDyslexic', (!cur).toString());
+                applyState(!cur);
+            }
+
+            if(FOOTER_BTN) FOOTER_BTN.addEventListener('click', toggle);
+            if(HOME_BTN) HOME_BTN.addEventListener('click', toggle);
+            if(FOOTER_BTN) FOOTER_BTN.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); FOOTER_BTN.click(); }});
+            if(HOME_BTN) HOME_BTN.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); HOME_BTN.click(); }});
+
+            const enabled = localStorage.getItem('useDyslexic') === 'true'; applyState(enabled);
+        })();
+    </script>
+    <script src="assets/footer-standard.js?v=20251107"></script>
+</body>
+</html>

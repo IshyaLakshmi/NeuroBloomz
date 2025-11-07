@@ -1,0 +1,16 @@
+{
+  "name": "neurobloomz-form-sender",
+  "version": "1.0.0",
+  "description": "Small Express server to send contact form emails for the NeuroBloomz static site.",
+  "main": "send_email_server.js",
+  "scripts": {
+    "start": "node send_email_server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.3"
+  }
+}
