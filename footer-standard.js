@@ -20,22 +20,22 @@
       <div class="footer-col">
         <h4 style="margin:0 0 0.6rem 0; font-weight:800;">Home</h4>
         <ul class="space-y-2">
-          <li><a href="index.html" class="text-black hover:text-black transition">Home</a></li>
-          <li><a href="about-website.html" class="text-black hover:text-black transition">About Website</a></li>
-          <li><a href="about-me.html" class="text-black hover:text-black transition">About Me</a></li>
-          <li><a href="contact.html" class="text-black hover:text-black transition">Contact Me</a></li>
-          <li><a href="blog.html" class="text-black hover:text-black transition">Blog</a></li>
+          <li><a href="index" class="text-black hover:text-black transition">Home</a></li>
+          <li><a href="about-website" class="text-black hover:text-black transition">About Website</a></li>
+          <li><a href="about-me" class="text-black hover:text-black transition">About Me</a></li>
+          <li><a href="contact" class="text-black hover:text-black transition">Contact Me</a></li>
+          <li><a href="blog" class="text-black hover:text-black transition">Blog</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h4 style="margin:0 0 0.6rem 0; font-weight:800;">Neurodivergency Page</h4>
         <ul class="space-y-2">
-          <li><a href="autism.html" class="text-black hover:text-black transition">Autism</a></li>
-          <li><a href="adhd.html" class="text-black hover:text-black transition">ADHD</a></li>
-          <li><a href="specific-learning-disorders.html" class="text-black hover:text-black transition">Specific Learning Disorders</a></li>
-          <li><a href="language-development.html" class="text-black hover:text-black transition">Language Development</a></li>
-          <li><a href="types-of-attention.html" class="text-black hover:text-black transition">Types of Attention</a></li>
+          <li><a href="autism" class="text-black hover:text-black transition">Autism</a></li>
+          <li><a href="adhd" class="text-black hover:text-black transition">ADHD</a></li>
+          <li><a href="specific-learning-disorders" class="text-black hover:text-black transition">Specific Learning Disorders</a></li>
+          <li><a href="language-development" class="text-black hover:text-black transition">Language Development</a></li>
+          <li><a href="types-of-attention" class="text-black hover:text-black transition">Types of Attention</a></li>
         </ul>
         <h4 style="margin:1rem 0 0.5rem 0; font-weight:800;">Resources Page</h4>
       </div>

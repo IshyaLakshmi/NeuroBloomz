@@ -7,19 +7,19 @@
     <!-- Immediate inline SVG favicon (shows right away and bypasses caching) - scaled to 2.5× base for stronger tab visibility -->
     <link rel="icon" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%238b5a2b'/%3E%3Ctext x='50%25' y='54%25' font-size='800' font-family='Arial,Helvetica,sans-serif' font-weight='900' fill='%23ffffff' text-anchor='middle' dominant-baseline='middle'%3ENB%3C/text%3E%3C/svg%3E">
     <!-- SVG asset (browsers that support SVG favicons will use this) -->
-    <link rel="icon" href="Used Favicons/favicon-32.png" sizes="any">
-    <!-- Standard favicon files (replace these with generated PNG/ICO files in assets/) -->
-    <link rel="icon" type="image/x-icon" href="Used Favicons/favicon.ico>
-    <link rel="icon" type="image/png" sizes="32x32" href="Used Favicons/favicon-32x32.png>
-    <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64x64.png?v=20251107">
-    <link rel="icon" type="image/png" sizes="16x16" href="Used Favicons/favicon-16x16.png>
+    <link rel="icon" href="favicon-32.png" sizes="any">
+    <!-- Standard favicon files (replace these with generated PNG/ICO files in ) -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png?v=20251107">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png>
 
     <!-- Apple / PWA -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon-180x180.png?v=20251107">
-    <link rel="manifest" href="assets/site.webmanifest?v=20251107">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png?v=20251107">
+    <link rel="manifest" href="site.webmanifest?v=20251107">
 
     <!-- Safari pinned tab -->
-    <link rel="mask-icon" href="Used Favicons/safari-pinned-tab.svg color="#8b5a2b">
+    <link rel="mask-icon" href="safari-pinned-tab.svg color="#8b5a2b">
 
     <!-- Theme / tile colors -->
     <meta name="msapplication-TileColor" content="#8b5a2b">
@@ -130,13 +130,13 @@ footer a:hover {
 }
 
 /* Dyslexia-friendly font (OpenDyslexic) - toggleable by user. 
-   Please place a local copy at assets/OpenDyslexic-Regular.woff2 for best offline support.
+   Please place a local copy at OpenDyslexic-Regular.woff2 for best offline support.
    A CDN fallback is provided but may be rate-limited or blocked by some hosts. */
 @font-face {
     font-family: 'OpenDyslexic';
     /* Prefer the downloaded WOFF2 in assets (Open-Dyslexic.woff2) */
-    src: url('assets/Open-Dyslexic.woff2') format('woff2'),
-         url('assets/OpenDyslexic-Regular.woff2') format('woff2'),
+    src: url('Open-Dyslexic.woff2') format('woff2'),
+         url('OpenDyslexic-Regular.woff2') format('woff2'),
          url('https://cdn.jsdelivr.net/gh/antijingoist/open-dyslexic@master/OpenDyslexic3-Regular.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
@@ -470,7 +470,7 @@ footer .dys-toggle { margin-top:0.4rem; }
     <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 w-full nav-inner">
         <div class="header-brand">
             <a href="index" aria-label="NeuroBloomz home" class="header-brand-link">
-                <!-- Local logo file: place your image at assets/logo.png -->
+                <!-- Local logo file: place your image at logo.png -->
                 <img src="logo w out bg.png" alt="NeuroBloomz logo" class="header-logo" width="48" height="48" onerror="this.style.display='none';" />
                 <span class="lovelace-font site-brand-text" style="font-size:clamp(1.8rem,4vw,3rem);line-height:1;font-weight:800;display:inline-block;color:#8b5a2b;">NeuroBloomz</span>
             </a>
@@ -3057,7 +3057,7 @@ footer .dys-toggle { margin-top:0.4rem; }
 <!-- Floating dyslexia toggle for the Home page (bottom-right) -->
 <button id="homeDyslexicToggle" class="dys-toggle" aria-pressed="false" title="Dyslexic Font Accessibility" aria-label="Toggle Dyslexic Font Accessibility">Dyslexic Font Accessibility</button>
 
-<!-- Dyslexic toggle behavior is now handled centrally by assets/footer-standard.js -->
-    <script src="assets/footer-standard.js?v=20251107"></script>
+<!-- Dyslexic toggle behavior is now handled centrally by footer-standard.js -->
+    <script src="footer-standard.js?v=20251107"></script>
 </body>
 </html>
