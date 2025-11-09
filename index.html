@@ -7,19 +7,19 @@
     <!-- Immediate inline SVG favicon (shows right away and bypasses caching) - scaled to 2.5× base for stronger tab visibility -->
     <link rel="icon" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%238b5a2b'/%3E%3Ctext x='50%25' y='54%25' font-size='800' font-family='Arial,Helvetica,sans-serif' font-weight='900' fill='%23ffffff' text-anchor='middle' dominant-baseline='middle'%3ENB%3C/text%3E%3C/svg%3E">
     <!-- SVG asset (browsers that support SVG favicons will use this) -->
-    <link rel="icon" href="assets/favicon-32.png" sizes="any">
+    <link rel="icon" href="Used Favicons/favicon-32.png" sizes="any">
     <!-- Standard favicon files (replace these with generated PNG/ICO files in assets/) -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico?v=20251107">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png?v=20251107">
+    <link rel="icon" type="image/x-icon" href="Used Favicons/favicon.ico>
+    <link rel="icon" type="image/png" sizes="32x32" href="Used Favicons/favicon-32x32.png>
     <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64x64.png?v=20251107">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png?v=20251107">
+    <link rel="icon" type="image/png" sizes="16x16" href="Used Favicons/favicon-16x16.png>
 
     <!-- Apple / PWA -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon-180x180.png?v=20251107">
     <link rel="manifest" href="assets/site.webmanifest?v=20251107">
 
     <!-- Safari pinned tab -->
-    <link rel="mask-icon" href="assets/safari-pinned-tab.svg?v=20251107" color="#8b5a2b">
+    <link rel="mask-icon" href="Used Favicons/safari-pinned-tab.svg color="#8b5a2b">
 
     <!-- Theme / tile colors -->
     <meta name="msapplication-TileColor" content="#8b5a2b">
@@ -102,7 +102,7 @@ footer {
 .container, .max-w-7xl, .max-w-4xl, .max-w-3xl { padding-left: var(--page-h-padding); padding-right: var(--page-h-padding); }
 
 footer h3, footer h4 {
-    color: #6c63ff;
+    color: #000000;
 }
 
 footer a {
@@ -3052,94 +3052,12 @@ footer .dys-toggle { margin-top:0.4rem; }
 
     <!-- Worry post moved to separate file: post-worry -->
 
-<footer class="w-full footer-custom tt-drugs-font">
-    <div class="footer-inner">
-        <!-- Left column -->
-        <div class="max-w-xs text-base">
-            <h2 class="lovelace-font text-2xl mb-2"><i class="fas fa-seedling text-pink-300"></i> NeuroBloomz</h2>
-            <p class="tt-drugs-font text-amber-900">
-                Supporting child development with engaging activities, resources, and guidance for parents and educators.
-            </p>
-            <!-- Dyslexia toggle moved into the left column below the NeuroBloomz description -->
-            <div style="margin-top:0.75rem;">
-                <button id="footerDyslexicToggle" class="dys-toggle" aria-pressed="false" title="Dyslexic Font Accessibility" aria-label="Toggle Dyslexic Font Accessibility">Dyslexic Font Accessibility</button>
-            </div>
-        </div>
-
-    <!-- Right column: nav columns -->
-    <div class="footer-nav flex flex-wrap gap-12 text-base font-semibold tt-drugs-font">
-            <!-- Column 1 -->
-            <div>
-                <ul class="space-y-2">
-                    <li><a href="index" class="text-black hover:text-black transition">Home</a></li>
-                    <li><a href="about-website" class="text-black hover:text-black transition">About Website</a></li>
-                    <li><a href="about-me" class="text-black hover:text-black transition">About Me</a></li>
-                    <li><a href="contact" class="text-black hover:text-black transition">Contact Me</a></li>
-                    <li><a href="blog" class="text-black hover:text-black transition">Blog</a></li>
-                </ul>
-            </div>
-
-            <!-- Column 2 -->
-            <div>
-                <ul class="space-y-2">
-                    <li>
-                        <a href="neurodivergency" class="text-black hover:text-black transition font-semibold">Neurodivergency Page</a>
-                        <ul class="pl-4 mt-2 space-y-1 text-amber-300 font-normal">
-                            <li><a href="autism" class="text-black hover:text-black transition">Autism</a></li>
-                            <li><a href="adhd" class="text-black hover:text-black transition">ADHD</a></li>
-                            <li><a href="specific-learning-disorders" class="text-black hover:text-black transition">Specific Learning Disorders</a></li>
-                            <li><a href="language-development" class="text-black hover:text-black transition">Language Development</a></li>
-                            <li><a href="types-of-attention" class="text-black hover:text-black transition">Types of Attention</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="resources" class="text-black hover:text-black transition font-semibold">Resources Page</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- (toggle moved to left column) -->
-    </div>
-    <!-- Attribution / small print -->
-    <div class="footer-credit" style="font-size:0.68rem; color:rgba(0,0,0,0.65); text-align:center; margin-top:0.5rem;">
-        <div>Icons made from <a href="https://www.onlinewebfonts.com/icon" target="_blank" rel="noopener noreferrer">svg icons</a>is licensed by CC BY 4.0</div>
-    </div>
-</footer>
+<footer class="footer-custom tt-drugs-font"></footer>
 
 <!-- Floating dyslexia toggle for the Home page (bottom-right) -->
 <button id="homeDyslexicToggle" class="dys-toggle" aria-pressed="false" title="Dyslexic Font Accessibility" aria-label="Toggle Dyslexic Font Accessibility">Dyslexic Font Accessibility</button>
 
-<!-- Dyslexia toggle script: persists choice in localStorage and applies a `.dyslexic` class to the document -->
-<script>
-    (function(){
-        const FOOTER_BTN = document.getElementById('footerDyslexicToggle');
-        const HOME_BTN = document.getElementById('homeDyslexicToggle');
-
-        function applyState(enabled){
-            if(enabled) document.documentElement.classList.add('dyslexic');
-            else document.documentElement.classList.remove('dyslexic');
-            if(FOOTER_BTN) FOOTER_BTN.setAttribute('aria-pressed', enabled ? 'true' : 'false');
-            if(HOME_BTN) HOME_BTN.setAttribute('aria-pressed', enabled ? 'true' : 'false');
-        }
-
-        function toggle(){
-            const cur = localStorage.getItem('useDyslexic') === 'true';
-            localStorage.setItem('useDyslexic', (!cur).toString());
-            applyState(!cur);
-        }
-
-        if(FOOTER_BTN) FOOTER_BTN.addEventListener('click', toggle);
-        if(HOME_BTN) HOME_BTN.addEventListener('click', toggle);
-
-        // Accessibility: keyboard activation
-        if(FOOTER_BTN) FOOTER_BTN.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); FOOTER_BTN.click(); }});
-        if(HOME_BTN) HOME_BTN.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); HOME_BTN.click(); }});
-
-        // Initialize from saved preference
-        const enabled = localStorage.getItem('useDyslexic') === 'true';
-        applyState(enabled);
-    })();
-</script>
-</script>
+<!-- Dyslexic toggle behavior is now handled centrally by assets/footer-standard.js -->
     <script src="assets/footer-standard.js?v=20251107"></script>
 </body>
 </html>

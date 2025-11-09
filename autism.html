@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Autism — NeuroBloomz</title>
     <!-- Favicons (copied from index) -->
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-512.png">
-    <link rel="shortcut icon" href="assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="Used Favicons/favicon-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Used Favicons/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="Used Favicons/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="Used Favicons/favicon-512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="Used Favicons/favicon-512.png">
+    <link rel="shortcut icon" href="Used Favicons/favicon.ico">
     <link rel="icon" href="assets/logo.png" sizes="any">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -165,66 +165,13 @@
         </div>
     </main>
 
-    <footer class="w-full footer-custom tt-drugs-font">
-        <div class="footer-inner">
-            <div class="max-w-xs text-base">
-                <h2 class="lovelace-font text-2xl mb-2"><i class="fas fa-seedling text-pink-300"></i> NeuroBloomz</h2>
-                <p class="tt-drugs-font text-amber-900">Supporting child development with activities and resources.</p>
-            </div>
-            <div class="footer-nav flex flex-wrap gap-12 text-base font-semibold tt-drugs-font">
-                <div>
-                    <ul class="space-y-2">
-                        <li><a href="index" class="text-black hover:text-black">Home</a></li>
-                        <li><a href="about-website" class="text-black hover:text-black">About Website</a></li>
-                        <li><a href="about-me" class="text-black hover:text-black">About Me</a></li>
-                        <li><a href="contact" class="text-black hover:text-black">Contact Me</a></li>
-                        <li><a href="blog" class="text-black hover:text-black">Blog</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <ul class="space-y-2">
-                        <li><a href="neurodivergency" class="text-black hover:text-black font-semibold">Neurodivergency Page</a></li>
-                        <li><a href="resources" class="text-black hover:text-black">Resources Page</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-credit" style="font-size:0.68rem; color:rgba(0,0,0,0.65); text-align:center; margin-top:0.5rem;">
-            <div>Created from the original single-file site — split into separate pages for clarity.</div>
-        </div>
-    </footer>
+    <footer class="footer-custom tt-drugs-font"></footer>
 
     <!-- Floating dyslexia toggle for this page -->
     <button id="homeDyslexicToggle" class="dys-toggle" aria-pressed="false" title="Dyslexic Font Accessibility" aria-label="Toggle Dyslexic Font Accessibility">Dyslexic Font Accessibility</button>
 
-    <script>
-        (function(){
-            const FOOTER_BTN = document.getElementById('footerDyslexicToggle');
-            const HOME_BTN = document.getElementById('homeDyslexicToggle');
-
-            function applyState(enabled){
-                if(enabled) document.documentElement.classList.add('dyslexic');
-                else document.documentElement.classList.remove('dyslexic');
-                if(FOOTER_BTN) FOOTER_BTN.setAttribute('aria-pressed', enabled ? 'true' : 'false');
-                if(HOME_BTN) HOME_BTN.setAttribute('aria-pressed', enabled ? 'true' : 'false');
-            }
-
-            function toggle(){
-                const cur = localStorage.getItem('useDyslexic') === 'true';
-                localStorage.setItem('useDyslexic', (!cur).toString());
-                applyState(!cur);
-            }
-
-            if(FOOTER_BTN) FOOTER_BTN.addEventListener('click', toggle);
-            if(HOME_BTN) HOME_BTN.addEventListener('click', toggle);
-
-            if(FOOTER_BTN) FOOTER_BTN.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); FOOTER_BTN.click(); }});
-            if(HOME_BTN) HOME_BTN.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); HOME_BTN.click(); }});
-
-            const enabled = localStorage.getItem('useDyslexic') === 'true';
-            applyState(enabled);
-        })();
-    </script>
+    <!-- Dyslexic toggle behavior handled by centralized footer script -->
     <script src="assets/footer-standard.js?v=20251107"></script>
 </body>
 </html>
+

@@ -187,8 +187,9 @@ footer {
 /* Apply consistent horizontal padding to main containers */
 .container, .max-w-7xl, .max-w-4xl, .max-w-3xl { padding-left: var(--page-h-padding); padding-right: var(--page-h-padding); }
 
+/* Footer heading color: keep headings readable and high-contrast (black) */
 footer h3, footer h4 {
-    color: #6c63ff;
+    color: #000;
 }
 
 footer a {
@@ -266,7 +267,7 @@ footer a:hover {
 .no-shadow { box-shadow: none; }
 
 /* Footer custom styling to replace inline styles */
-.footer-custom { background: #f6e4bd; color: #000; padding: 3rem 1.5rem; }
+.footer-custom { background: #f6e4bd; color: #000; padding: 2.25rem 1.5rem; }
 /* Design tokens: pastel-blue palette */
 :root {
     --pastel-blue-start: #9fd8ff;
@@ -310,9 +311,14 @@ footer a:hover {
     box-shadow: 0 8px 20px rgba(8,120,120,0.06);
 }
 
-.footer-custom .footer-inner { max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.25rem; }
+.footer-custom .footer-inner { max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; }
 @media (min-width: 768px) { .footer-custom .footer-inner { flex-direction: row; justify-content: space-between; align-items: flex-start; } }
-.footer-custom .footer-nav { margin-left: auto; display: flex; gap: 2rem; flex-wrap: wrap; }
+.footer-custom .footer-left { flex: 0 0 320px; }
+.footer-custom .footer-nav { margin-left: auto; display: flex; gap: 2.5rem; flex-wrap: wrap; align-items: flex-start; }
+.footer-custom .footer-nav .footer-col h4 { margin: 0 0 0.5rem 0; font-weight: 800; }
+.footer-custom .footer-nav ul { list-style: none; padding: 0; margin: 0; }
+.footer-custom .footer-nav li { margin-bottom: 0.45rem; }
+.footer-custom .footer-credit { text-align: center; margin-top: 0.75rem; font-size: 0.75rem; color: rgba(0,0,0,0.65); }
 
 /* Make language development sections balanced */
 .language-dev-section { margin-bottom: 0; }
@@ -455,6 +461,23 @@ footer a:hover {
        run yet. The JS will update --site-nav-height later and this will
        still apply. */
     margin-top: calc(var(--site-nav-height, 56px) + 3cm) !important;
+}
+
+/* Make the extra page header offset responsive so very small viewports
+   don't get an excessive 3cm gap. Reduce the extra spacing to 1.2cm on
+   narrow screens for better visual balance. */
+@media (max-width: 640px) {
+    .page-header-offset { margin-top: calc(var(--site-nav-height, 56px) + 1.2cm) !important; }
+}
+
+/* Responsive container for embedded iframes (Google Forms, docs, etc.)
+   Use an aspect-ratio padding-bottom technique so the iframe scales
+   fluidly while keeping a comfortable height on mobile. */
+.iframe-container { position: relative; width: 100%; padding-bottom: 90%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+.iframe-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+@media (max-width: 640px) {
+    /* Make the iframe taller on narrow screens so embedded forms remain usable */
+    .iframe-container { padding-bottom: 140%; }
 }
 
 /* Smaller back button variant used at the end of posts */
