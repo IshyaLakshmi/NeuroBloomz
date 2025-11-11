@@ -42,7 +42,7 @@
         <div class="max-w-7xl mx-auto px-4 relative z-10">
             <!-- About Website content extracted from index -->
             <div id="about-website" class="page active">
-                <div class="min-h-screen py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #f6e4bd 0%, #ecd6a7 50%, #d6bd89 100%);">
+                <div class="min-h-screen py-20 relative" style="background: linear-gradient(135deg, #f6e4bd 0%, #ecd6a7 50%, #d6bd89 100%);">
                     <div class="max-w-7xl mx-auto px-4 relative z-10">
                         <div class="text-center mb-20 relative">
                             <h1 class="lovelace-font gradient-text mb-6 mobile-text" style="font-size: 4rem; line-height: 1.1;">
@@ -99,11 +99,11 @@
 
                             <div class="order-2 lg:order-1">
                                 <div class="relative">
-                                    <div class="glass-effect rounded-3xl shadow-2xl overflow-hidden card-hover border-4 border-white" style="width: 440px; height: 660px; margin: 0 auto;">
-                                        <img src="https://images.pexels.com/photos/3205071/pexels-photo-3205071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                                             alt="Young girl sitting comfortably on an armchair at school, representing the learning environment we support" 
-                                             class="w-full h-full object-cover"
-                                             onerror="this.style.display='none'; this.alt='Image failed to load - Girl learning at school';">
+                    <div class="glass-effect rounded-3xl shadow-2xl overflow-hidden card-hover responsive-image-card border-4 border-white" style="max-width: 440px; margin: 0 auto;">
+                        <img src="https://images.pexels.com/photos/3205071/pexels-photo-3205071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                             alt="Young girl sitting comfortably on an armchair at school, representing the learning environment we support" 
+                             class="responsive-card-img"
+                             onerror="this.style.display='none'; this.alt='Image failed to load - Girl learning at school';">
                                     </div>
                                 </div>
                             </div>
@@ -128,49 +128,13 @@
     </main>
 
     <footer class="footer-custom tt-drugs-font"></footer>
-                        <li><a href="specific-learning-disorders" class="text-black hover:text-black font-semibold">Specific Learning Disabilities</a></li>
-                        <li><a href="language-development" class="text-black hover:text-black font-semibold">Language Development</a></li>
-                        <li><a href="types-of-attention" class="text-black hover:text-black font-semibold">Types of Attention</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-credit" style="font-size:0.68rem; color:rgba(0,0,0,0.65); text-align:center; margin-top:0.5rem;">
-            <div>Created from the original single-file site — split into separate pages for clarity.</div>
-        </div>
 
-    </footer>
+    <!-- Floating dyslexia toggle for this page -->
+    <button id="homeDyslexicToggle" class="dys-toggle" aria-pressed="false" title="Dyslexic Font Accessibility" aria-label="Toggle Dyslexic Font Accessibility">Dyslexic Font Accessibility</button>
 
-    <script>
-        (function(){
-            const FOOTER_BTN = document.getElementById('footerDyslexicToggle');
-            const HOME_BTN = null; // not present on this page
-
-            function applyState(enabled){
-                if(enabled) document.documentElement.classList.add('dyslexic');
-                else document.documentElement.classList.remove('dyslexic');
-                if(FOOTER_BTN) FOOTER_BTN.setAttribute('aria-pressed', enabled ? 'true' : 'false');
-            }
-
-            function toggle(){
-                const cur = localStorage.getItem('useDyslexic') === 'true';
-                localStorage.setItem('useDyslexic', (!cur).toString());
-                applyState(!cur);
-            }
-
-            if(FOOTER_BTN) FOOTER_BTN.addEventListener('click', toggle);
-            if(FOOTER_BTN) FOOTER_BTN.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); FOOTER_BTN.click(); }});
-
-            const enabled = localStorage.getItem('useDyslexic') === 'true';
-            applyState(enabled);
-        })();
-    </script>
-    <script src="footer-standard.js?v=20251107"></script>
+    <!-- Dyslexic toggle behavior handled by centralized footer script -->
+    <script src="assets/footer-standard.js?v=20251107"></script>
 
 </body>
 </html>
-<!-- Floating dyslexia toggle for this page -->
-<button id="homeDyslexicToggle" class="dys-toggle" aria-pressed="false" title="Dyslexic Font Accessibility" aria-label="Toggle Dyslexic Font Accessibility">Dyslexic Font Accessibility</button>
-
-    <!-- Dyslexic toggle behavior handled by centralized footer script -->
 

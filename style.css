@@ -2,12 +2,12 @@
         .tt-drugs-font { font-family: 'Inter', sans-serif; }
 /* OpenDyslexic font-face and dyslexic helper styles (site-wide)
    Moved from inline index.html CSS so the font toggle works on all pages.
-   Please ensure assets/Open-Dyslexic.woff2 or OpenDyslexic-Regular.woff2 exists
-   in the `assets/` folder; a CDN fallback is provided. */
+   Please ensure Open-Dyslexic.woff2 or OpenDyslexic-Regular.woff2 exists
+   in the `` folder; a CDN fallback is provided. */
 @font-face {
     font-family: 'OpenDyslexic';
-    src: url('assets/Open-Dyslexic.woff2') format('woff2'),
-         url('assets/OpenDyslexic-Regular.woff2') format('woff2'),
+    src: url('Open-Dyslexic.woff2') format('woff2'),
+         url('OpenDyslexic-Regular.woff2') format('woff2'),
          url('https://cdn.jsdelivr.net/gh/antijingoist/open-dyslexic@master/OpenDyslexic3-Regular.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
@@ -131,7 +131,7 @@ footer .dys-toggle { margin-top:0.4rem; }
     }
 
     /* Header brand (logo + text) - local image insertion
-       Drop your logo image at `assets/logo.png`. If the image fails to load
+       Drop your logo image at `logo.png`. If the image fails to load
        the <img> will be hidden via onerror to keep the header tidy. */
     .header-brand { display: flex; align-items: center; gap: 0.6rem; }
     /* Keep the brand block vertically centered — remove extra top margin that forced visual shift */
@@ -454,7 +454,7 @@ footer a:hover {
    Use this on page-level header containers to ensure they sit below the
    fixed/sticky header. It adds the current header height (set into
    --site-nav-height by the site JS) plus an extra 3cm as requested. The
-   JS in `assets/footer-standard.js` keeps --site-nav-height up-to-date. */
+   JS in `footer-standard.js` keeps --site-nav-height up-to-date. */
 .page-header-offset {
     /* Use a reasonable default header height (56px) so the offset is
        visible immediately even if the JS that measures the header hasn't
@@ -468,6 +468,28 @@ footer a:hover {
    narrow screens for better visual balance. */
 @media (max-width: 640px) {
     .page-header-offset { margin-top: calc(var(--site-nav-height, 56px) + 1.2cm) !important; }
+}
+
+/* ADHD-specific safety offset: make sure the 'Understanding ADHD' H1 isn't
+   overlapped by the sticky header even when JS measurements aren't available.
+   This is a conservative, high-specificity rule to ensure the visual change
+   is visible immediately after editing. */
+#adhd .page-header-offset {
+    /* Increase desktop offset to ensure the hero is pushed well below the header */
+    margin-top: calc(var(--site-nav-height, 56px) + 3rem) !important;
+}
+@media (max-width: 640px) {
+    /* Mobile: give more breathing room for the large H1 and lead paragraph */
+    #adhd .page-header-offset { margin-top: calc(var(--site-nav-height, 56px) + 4.5rem) !important; }
+}
+
+/* Extra safety: ensure the ADHD hero's heading isn't clipped by any ancestor.
+   Make text containers explicitly visible and give a little internal padding on mobile. */
+#adhd .text-center { overflow: visible !important; }
+#adhd .text-center h1 { display: block; padding-top: 0.5rem; }
+@media (max-width: 640px) {
+    #adhd .text-center { padding-top: 1rem; }
+    #adhd .text-center h1 { padding-top: 0.8rem; }
 }
 
 /* Responsive container for embedded iframes (Google Forms, docs, etc.)
@@ -674,3 +696,29 @@ footer a:hover {
     margin-top: 1.2rem; 
 }
 .no-results.show { display: block; }
+
+/* About page responsive hero image adjustments
+   Prevent the fixed 440x660 image from overflowing/cutting off on small screens.
+   Scoped to #about-website to avoid changing other pages. */
+#about-website .responsive-image-card {
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    margin: 0 auto;
+    overflow: hidden; /* keep rounded corners */
+}
+#about-website .responsive-image-card .responsive-card-img,
+#about-website img.responsive-card-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Add a touch more horizontal padding on very small screens so the content
+   (brand, mission paragraphs, CTA) doesn't sit flush with the viewport edge. */
+@media (max-width: 420px) {
+    :root { --page-h-padding: 1.25rem; }
+    .site-nav { padding-inline: var(--page-h-padding); }
+    .max-w-7xl, .max-w-4xl, .max-w-3xl { padding-left: var(--page-h-padding); padding-right: var(--page-h-padding); }
+}
